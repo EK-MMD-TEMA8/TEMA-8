@@ -58,7 +58,6 @@ img {
    MAIN
 ========================================== */
 main {
-  color: var(--brødtekst-color);
   padding-inline: 2rem;
 }
 
