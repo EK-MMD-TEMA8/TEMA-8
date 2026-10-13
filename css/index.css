@@ -2,13 +2,13 @@
   position: relative;
   background-color: #fdf8ec;
   text-align: center;
-  padding: 80px 20px 60px;
+  padding: 40px 20px 70px;
   font-family: "Figtree", sans-serif;
 }
 
 .hero h1 {
   font-family: "Anton", sans-serif;
-  font-size: 250px;
+  font-size: 130px;
   font-weight: 400;
   color: #2b3fbf;
   margin: 0;
@@ -18,10 +18,10 @@
 .hero-billede {
   display: block;
   float: none;
-  width: 300px;
-  height: 230px;
+  width: 220px;
+  height: 165px;
   object-fit: cover;
-  margin: -160px auto 0;
+  margin: -20px auto 0;
   position: relative;
   border: 6px solid white;
   border-radius: 16px;
@@ -31,20 +31,19 @@
 
 .hero-tekst {
   max-width: 480px;
-  margin: 30px auto 20px;
-  font-size: 18px;
+  margin: 45px auto 30px;
+  font-size: 16px;
   font-weight: 500;
 }
 
 .hero-note {
-  position: absolute;
-  top: 70px;
-  left: 30px;
   font-family: "Caveat", cursive;
-  font-size: 26px;
+  font-size: 22px;
   color: #2b3fbf;
+  margin: 0 0 30px;
   transform: rotate(-4deg);
 }
+
 .hero-note a {
   color: #2b3fbf;
   text-decoration: none;
@@ -53,31 +52,34 @@
 .hero-note a:hover {
   text-decoration: underline;
 }
+
 .markat {
   position: absolute;
-  padding: 8px 16px;
+  padding: 6px 12px;
   border: 2px solid #2b3fbf;
   border-radius: 30px;
   color: #2b3fbf;
+  font-size: 13px;
   font-weight: 500;
 }
 
 .markat-venstre {
-  top: 140px;
-  left: 10%;
-  background-color: #c9d3f5;
+  top: 230px;
+  left: 5px;
+  background-color: #ff9131;
   transform: rotate(-10deg);
 }
 
 .markat-hoejre {
-  top: 140px;
-  right: 10%;
+  display: none;
   background-color: white;
   transform: rotate(8deg);
 }
 
 .hero input {
-  width: 280px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
   padding: 14px 20px;
   border: 2px solid #2b3fbf;
   border-radius: 30px;
@@ -85,6 +87,7 @@
 }
 
 .hero button {
+  width: 100%;
   padding: 14px 24px;
   border: 2px solid #2b3fbf;
   border-radius: 30px;
@@ -94,30 +97,70 @@
   cursor: pointer;
 }
 
-/* Mobil */
-@media (max-width: 768px) {
+@media (min-width: 800px) {
+  .hero {
+    padding: 80px 20px 60px;
+  }
+
   .hero h1 {
-    font-size: 130px;
+    font-size: 250px;
   }
 
   .hero-billede {
-    width: 200px;
-    height: 150px;
-    margin-top: -90px;
+    width: 300px;
+    height: 230px;
+    margin-top: -120px;
   }
 
-  .maerkat-hoejre {
-    display: none;
+  .hero-tekst {
+    font-size: 18px;
+    margin: 30px auto 20px;
+  }
+
+  .hero-note {
+    position: absolute;
+    top: 70px;
+    left: 30px;
+    font-size: 26px;
+    margin: 0;
+  }
+
+  .markat {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  .markat-venstre {
+    top: 110px;
+    left: 6%;
+  }
+
+  .markat-hoejre {
+    display: block;
+    top: 140px;
+    right: 10%;
+  }
+
+  .hero input {
+    width: 280px;
+    margin-bottom: 0;
+  }
+
+  .hero button {
+    width: auto;
   }
 }
+
+.box1 {
+  background-color: #c9d3f5;
+  margin-inline: -2rem;
+  padding: 40px 2rem;
+}
+
 .box1 h2 {
-  margin-top: 3rem;
-  margin-left: 3rem;
+  margin-top: 0;
 }
 
-.box1 p {
-  margin-left: 3rem;
-}
 .box1-ikon {
   display: block;
   width: 200px;
@@ -125,11 +168,14 @@
   margin-bottom: 40px;
   margin-inline: auto;
 }
+
 .streg {
   border: none;
   border-top: 8px solid #cad3fc;
   border-bottom: 10px solid var(--knap-blaa);
   margin-block: 60px;
+  margin-inline: -2rem;
+  margin-top: 0;
 }
 
 .box1-knap {
@@ -137,21 +183,34 @@
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  background-color: orange;
+  background-color: #ff9131;
 }
+.box1-knap:hover {
+  background-color: #f87f14;
+}
+
 @media (min-width: 800px) {
   /* Tekst og billede ved siden af hinanden */
   .box1 {
-    margin-left: 6rem;
     display: flex;
     align-items: center;
     gap: 200px;
     padding: 60px 40px;
   }
 
+  .box1 h2 {
+    margin-top: 3rem;
+    margin-left: 3rem;
+  }
+
+  .box1 p {
+    margin-left: 3rem;
+  }
+
   .box1-tekst p {
     max-width: 300px;
   }
+
   .box1-ikon {
     width: 300px;
     margin-left: 3rem;
@@ -172,6 +231,7 @@
   width: 100%;
   border-radius: 10px;
 }
+
 .box2-knap {
   display: block;
   width: fit-content;
@@ -197,15 +257,18 @@
   font-family: "Arbutus Slab", serif;
   font-size: 1.2rem;
 }
+
 .box2-tekst h2 {
   color: #000;
 }
+
 .box2-undertitel {
   font-family: "Arbutus Slab", serif;
   color: #7a6a4f;
   margin-top: 0;
   margin-bottom: 20px;
 }
+
 .box2-ord {
   position: absolute;
   margin: 0;
@@ -253,15 +316,11 @@
     width: 380px;
   }
 }
-/* ==========================================
-   VIBE (mobil)
-========================================== */
 
 .vibe {
   background-color: var(--knap-beige);
   padding: 30px 20px;
   text-align: center;
-
   margin-left: -2rem;
   margin-right: -2rem;
   margin-bottom: 2rem;
@@ -283,6 +342,9 @@
   max-width: 420px;
   margin: 0 auto;
 }
+.vibe-tags:hover {
+  background-color: #ff9131;
+}
 
 .vibe-tags a {
   text-decoration: none;
@@ -299,10 +361,6 @@
 .vibe-link:hover {
   text-decoration: underline;
 }
-
-/* ==========================================
-   INSPIRATION (mobil)
-========================================== */
 
 .inspiration {
   padding: 40px 20px;
@@ -370,10 +428,6 @@
   margin: 0;
   font-family: "Arbutus Slab", serif;
 }
-
-/* ==========================================
-   DESKTOP
-========================================== */
 
 @media (min-width: 800px) {
   /* "Se alle opskrifter" ude i højre side */
