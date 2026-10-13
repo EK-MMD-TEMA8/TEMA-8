@@ -7,26 +7,25 @@
 }
 
 .hero h1 {
-  font-family: "Anton", sans-serif;
   font-size: 130px;
   font-weight: 400;
   color: #2b3fbf;
   margin: 0;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
   line-height: 1;
 }
 
 .hero-billede {
   display: block;
-  float: none;
   width: 220px;
   height: 165px;
   object-fit: cover;
-  margin: -20px auto 0;
+  margin: -10px auto 0;
   position: relative;
-  border: 6px solid white;
   border-radius: 16px;
   transform: rotate(-5deg);
-  box-shadow: 8px 8px 0 #2b3fbf;
+  box-shadow: 4px 4px 1px #7f725f;
 }
 
 .hero-tekst {
@@ -39,13 +38,13 @@
 .hero-note {
   font-family: "Caveat", cursive;
   font-size: 22px;
-  color: #2b3fbf;
-  margin: 0 0 30px;
+  color: #000;
+  margin: 0 0 10px;
   transform: rotate(-4deg);
 }
 
 .hero-note a {
-  color: #2b3fbf;
+  color: #000;
   text-decoration: none;
 }
 
@@ -55,25 +54,26 @@
 
 .markat {
   position: absolute;
+  width: fit-content;
+  white-space: nowrap;
   padding: 6px 12px;
-  border: 2px solid #2b3fbf;
   border-radius: 30px;
-  color: #2b3fbf;
   font-size: 13px;
   font-weight: 500;
 }
 
 .markat-venstre {
-  top: 230px;
-  left: 5px;
+  top: 250px;
+  right: 5px;
+  color: #000;
   background-color: #ff9131;
-  transform: rotate(-10deg);
+  transform: rotate(10deg);
 }
 
 .markat-hoejre {
   display: none;
   background-color: white;
-  transform: rotate(8deg);
+  transform: rotate(-8deg);
 }
 
 .hero input {
@@ -110,6 +110,9 @@
     width: 300px;
     height: 230px;
     margin-top: -120px;
+    margin-left: 55%;
+    transform: none;
+    margin-bottom: 5rem;
   }
 
   .hero-tekst {
@@ -119,7 +122,7 @@
 
   .hero-note {
     position: absolute;
-    top: 70px;
+    top: 40px;
     left: 30px;
     font-size: 26px;
     margin: 0;
@@ -131,16 +134,17 @@
   }
 
   .markat-venstre {
-    top: 110px;
-    left: 6%;
+    top: 120px;
+    right: 22%;
+    transform: none;
   }
 
   .markat-hoejre {
     display: block;
-    top: 140px;
-    right: 10%;
+    top: 190px;
+    left: 26%;
+    transform: none;
   }
-
   .hero input {
     width: 280px;
     margin-bottom: 0;
@@ -185,6 +189,7 @@
   margin-right: auto;
   background-color: #ff9131;
 }
+
 .box1-knap:hover {
   background-color: #f87f14;
 }
@@ -194,17 +199,14 @@
   .box1 {
     display: flex;
     align-items: center;
-    gap: 200px;
-    padding: 60px 40px;
+    justify-content: center;
+    gap: 100px;
+    padding: 100px 100px;
+    margin-top: 3rem;
   }
 
   .box1 h2 {
-    margin-top: 3rem;
-    margin-left: 3rem;
-  }
-
-  .box1 p {
-    margin-left: 3rem;
+    margin-top: 0;
   }
 
   .box1-tekst p {
@@ -213,10 +215,10 @@
 
   .box1-ikon {
     width: 300px;
-    margin-left: 3rem;
+    margin: 0;
+    margin-block: 2rem;
   }
 }
-
 /* Boksen alt bliver placeret ud fra */
 .box2 {
   position: relative;
@@ -342,9 +344,6 @@
   max-width: 420px;
   margin: 0 auto;
 }
-.vibe-tags:hover {
-  background-color: #ff9131;
-}
 
 .vibe-tags a {
   text-decoration: none;
@@ -415,7 +414,6 @@
 /* Den gule cirkel (Nem, Populær) */
 .badge {
   position: absolute;
-  margin-top: 4rem;
   top: -10px;
   left: -10px;
   width: 80px;
