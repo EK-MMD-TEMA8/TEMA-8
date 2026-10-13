@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>forside</title>
+    <title>Home</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="css/generel.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <script src="javascript/index.js" defer></script>
+
 </head>
 
 <body>
@@ -24,27 +27,27 @@
             <ul class="menu">
                 <li>
                     <details>
-                        <summary>Måltider</summary>
+                        <summary>Meals</summary>
                         <ul class="undermenu">
-                            <li><a href="/listview?mealType=breakfast">Morgenmad</a></li>
-                            <li><a href="/listview?mealType=lunch">Frokost</a></li>
-                            <li><a href="/listview?mealType=dinner">Aftensmad</a></li>
+                            <li><a href="/listview?mealType=breakfast">Breakfast</a></li>
+                            <li><a href="/listview?mealType=lunch">Lunch</a></li>
+                            <li><a href="/listview?mealType=dinner">Dinner</a></li>
                             <li><a href="/listview?mealType=dessert">Dessert</a></li>
                         </ul>
                     </details>
                 </li>
-                <li><a href="listview.html">Opskrifter</a></li>
-                <li><a href="omos.html">Om os</a></li>
+                <li><a href="listview.html">Recipes</a></li>
+                <li><a href="omos.html">About us</a></li>
             </ul>
 
             <a href="/">
-                <img src="img/logo/logo.svg" alt="blåt yum Logo" />
+                <img src="img/logo/logo.svg" alt="Blue Yum logo" />
             </a>
 
-            <!-- Søgefelt -->
+            <!-- Search field -->
             <form class="search" role="search">
-                <img src="img/iconer/search-icon (1).svg" alt="søge icon" class="search-ikon" />
-                <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" />
+                <img src="img/iconer/search-icon (1).svg" alt="Search icon" class="search-ikon" />
+                <input type="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
             </form>
 
             <button class="burger">
@@ -56,15 +59,37 @@
     </header>
 
     <main>
+
+
+        <section class="hero">
+            <p class="hero-note">
+                <a href="recipe.html">No more oatmeal for dinner →</a>
+            </p>
+            <span class="markat markat-venstre">Under 20 min</span>
+            <span class="markat markat-hoejre">Ease recipes</span>
+
+            <h1>YUM</h1>
+            <img class="hero-billede" src="img/herobillede.jpg" alt="lækker salatskål">
+
+            <p class="hero-tekst">
+                Easy everyday recipes for when you’ve just moved out and have no idea what to eat.
+            </p>
+
+            <form action="recipe.html">
+                <input type="text" placeholder="pasta, kebab, salater...">
+                <button type="submit">Find recipes</button>
+            </form>
+        </section>
         <section class="box1">
             <div class="box1-tekst">
-                <h1>Træt af rugbrød & <br> havregryn??</h1>
-                <p>Find din indre masterchef frem, da vi har over 100 opskrifter på lækre, sunde og nemme retter.</p>
+                <h2>Tired of rye bread & <br> oatmeal??</h2>
+                <p>Bring out your inner masterchef – we have over 100 recipes for tasty, healthy and easy dishes.
+                </p>
             </div>
 
             <div class="box1-billede">
-                <img src="img/iconer/opskrifttegning.svg" alt="Opskrift i tegnet format" class="box1-ikon"> <a
-                    href="/listview" class="btn-opdag box1-knap">Se vores retter</a>
+                <img src="img/iconer/opskrifttegning.svg" alt="Illustrated recipe" class="box1-ikon"> <a
+                    href="/listview" class="btn-opdag box1-knap">See our recipes</a>
             </div>
         </section>
 
@@ -74,84 +99,81 @@
         <div class="streg"></div>
         <section class="box2-sektion">
             <div class="box2-tekst">
-                <h2>Lynhurtig mad</h2>
-                <p class="box2-undertitel">Noget du kan lave på under 30 minutter</p>
-                <p>Lidt sulten? Lidt doven? Lidt flad? Helt fair. Vi har samlet retter, der kan laves på under 30
-                    minutter, med
-                    ingredienser du kan finde i det nærmeste supermarked. Så slipper du for at tænke, og kan bare gå i
-                    gang.</p>
-                <a href="/listview" class="btn-opdag box2-knap">Opdag mere</a>
+                <h2>Super quick food</h2>
+                <p class="box2-undertitel">Something you can make in under 30 minutes</p>
+                <p>A bit hungry? A bit lazy? A bit tired? Totally fair. We've gathered dishes you can make in under
+                    30
+                    minutes, with ingredients from your nearest supermarket. No need to overthink it – just get
+                    started.</p>
+                <a href="/listview" class="btn-opdag box2-knap">Discover more</a>
             </div>
 
             <div class="box2">
-                <img src="img/Illustreret madlavningscollage med friske råvarer 1.png" alt="pige der laver mad"
-                    class="box2-foto">
+                <img src="img/Ung kok med friske råvarer.png" alt="Girl cooking" class="box2-foto">
                 <p class="box2-tid">20 min</p>
-                <p class="box2-ord nemt">Nemt</p>
-                <p class="box2-ord hurtigt">Hurtigt</p>
+                <p class="box2-ord nemt">Easy</p>
+                <p class="box2-ord hurtigt">Quick</p>
             </div>
         </section>
 
-
         <section class="vibe">
-            <h2>Hvad er din vibe i dag?</h2>
+            <h2>What's your vibe today?</h2>
 
             <div class="vibe-tags">
-                <a href="/listview" class="btn-tag">Asiatisk</a>
-                <a href="/listview" class="btn-tag">Italiensk</a>
-                <a href="/listview" class="btn-tag">Vegetar</a>
-                <a href="/listview" class="btn-tag">Vegansk</a>
-                <a href="/listview?mealType=breakfast" class="btn-tag">Morgenmad</a>
-                <a href="/listview?mealType=lunch" class="btn-tag">Frokost</a>
-                <a href="/listview?mealType=dinner" class="btn-tag">Aftensmad</a>
-                <a href="/listview?mealType=dessert" class="btn-tag">Dessert</a>
+                <!-- <a href="/listview" class="btn-tag">Asian</a>
+        <a href="/listview" class="btn-tag">Italian</a>
+        <a href="/listview" class="btn-tag">Vegetarian</a>
+        <a href="/listview" class="btn-tag">Vegan</a>
+        <a href="/listview?mealType=breakfast" class="btn-tag">Breakfast</a>
+        <a href="/listview?mealType=lunch" class="btn-tag">Lunch</a>
+        <a href="/listview?mealType=dinner" class="btn-tag">Dinner</a>
+        <a href="/listview?mealType=dessert" class="btn-tag">Dessert</a> -->
             </div>
 
-            <a href="/listview" class="vibe-link">Se alle opskrifter →</a>
+            <a href="listview.html" class="vibe-link">See all recipes →</a>
         </section>
 
 
 
         <section class="inspiration">
-            <h2>Hvad mangler du inspiration til?</h2>
-            <p class="inspiration-tekst">Få nem inspiration til hverdagen – uden at det bliver kedeligt.</p>
+            <h2>What do you need inspiration for?</h2>
+            <p class="inspiration-tekst">Easy everyday inspiration – without it getting boring.</p>
 
             <div class="kort-liste">
-                <a href="/listview?mealType=breakfast" class="kort">
-                    <p class="badge">Nem</p>
-                    <img src="https://placehold.co/400x300" alt="Morgenmad" class="kort-billede">
-                    <h3 class="kort-titel">Morgenmad</h3>
-                </a>
+                <!-- <a href="/listview?mealType=breakfast" class="kort">
+            <p class="badge">Easy</p>
+            <img src="https://placehold.co/400x300" alt="Breakfast" class="kort-billede">
+            <h3 class="kort-titel">Breakfast</h3>
+        </a>
 
-                <a href="/listview?mealType=lunch" class="kort">
-                    <img src="https://placehold.co/400x300" alt="Frokost" class="kort-billede">
-                    <h3 class="kort-titel">Frokost</h3>
-                </a>
+        <a href="/listview?mealType=lunch" class="kort">
+            <img src="https://placehold.co/400x300" alt="Lunch" class="kort-billede">
+            <h3 class="kort-titel">Lunch</h3>
+        </a>
 
-                <a href="/listview?mealType=dinner" class="kort">
-                    <p class="badge">Populær</p>
-                    <img src="https://placehold.co/400x300" alt="Aftensmad" class="kort-billede">
-                    <h3 class="kort-titel">Aftensmad</h3>
-                </a>
+        <a href="/listview?mealType=dinner" class="kort">
+            <p class="badge">Popular</p>
+            <img src="https://placehold.co/400x300" alt="Dinner" class="kort-billede">
+            <h3 class="kort-titel">Dinner</h3>
+        </a>
 
-                <a href="/listview?mealType=dessert" class="kort">
-                    <img src="https://placehold.co/400x300" alt="Dessert" class="kort-billede">
-                    <h3 class="kort-titel">Dessert</h3>
-                </a>
+        <a href="/listview?mealType=dessert" class="kort">
+            <img src="https://placehold.co/400x300" alt="Dessert" class="kort-billede">
+            <h3 class="kort-titel">Dessert</h3>
+        </a>
 
-                <a href="/listview?mealType=snack" class="kort">
-                    <img src="https://placehold.co/400x300" alt="Snacks" class="kort-billede">
-                    <h3 class="kort-titel">Snacks</h3>
-                </a>
+        <a href="/listview?mealType=snack" class="kort">
+            <img src="https://placehold.co/400x300" alt="Snacks" class="kort-billede">
+            <h3 class="kort-titel">Snacks</h3>
+        </a> -->
             </div>
         </section>
-
     </main>
 
     <footer>
         <div class="footer-venstre">
             <img src="img/logo/logo.svg" alt="Yum logo" class="footer-logo">
-            <p class="footer-find">Find os her</p>
+            <p class="footer-find">Find us here</p>
             <div class="footer-ikoner">
                 <a href="#"><img src="img/iconer/tiktok.png" alt="TikTok"></a>
                 <a href="#"><img src="img/iconer/instagram.png" alt="Instagram"></a>
@@ -159,9 +181,9 @@
         </div>
 
         <div class="footer-hoejre">
-            <h2>Vil du modtage vores nyeste opskrifter før alle andre?</h2>
-            <input type="email" class="footer-button1" placeholder="Ditnavn@gmail.com">
-            <button class="footer-button2">Tilmeld dig her</button>
+            <h2>Want to get our newest recipes before everyone else?</h2>
+            <input type="email" class="footer-button1" placeholder="yourname@gmail.com">
+            <button class="footer-button2">Sign up here</button>
         </div>
     </footer>
 
