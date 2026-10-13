@@ -1,4 +1,116 @@
-h1 {
+.hero {
+  position: relative;
+  background-color: #fdf8ec;
+  text-align: center;
+  padding: 80px 20px 60px;
+  font-family: "Figtree", sans-serif;
+}
+
+.hero h1 {
+  font-family: "Anton", sans-serif;
+  font-size: 250px;
+  font-weight: 400;
+  color: #2b3fbf;
+  margin: 0;
+  line-height: 1;
+}
+
+.hero-billede {
+  display: block;
+  float: none;
+  width: 300px;
+  height: 230px;
+  object-fit: cover;
+  margin: -160px auto 0;
+  position: relative;
+  border: 6px solid white;
+  border-radius: 16px;
+  transform: rotate(-5deg);
+  box-shadow: 8px 8px 0 #2b3fbf;
+}
+
+.hero-tekst {
+  max-width: 480px;
+  margin: 30px auto 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.hero-note {
+  position: absolute;
+  top: 70px;
+  left: 30px;
+  font-family: "Caveat", cursive;
+  font-size: 26px;
+  color: #2b3fbf;
+  transform: rotate(-4deg);
+}
+.hero-note a {
+  color: #2b3fbf;
+  text-decoration: none;
+}
+
+.hero-note a:hover {
+  text-decoration: underline;
+}
+.markat {
+  position: absolute;
+  padding: 8px 16px;
+  border: 2px solid #2b3fbf;
+  border-radius: 30px;
+  color: #2b3fbf;
+  font-weight: 500;
+}
+
+.markat-venstre {
+  top: 140px;
+  left: 10%;
+  background-color: #c9d3f5;
+  transform: rotate(-10deg);
+}
+
+.markat-hoejre {
+  top: 140px;
+  right: 10%;
+  background-color: white;
+  transform: rotate(8deg);
+}
+
+.hero input {
+  width: 280px;
+  padding: 14px 20px;
+  border: 2px solid #2b3fbf;
+  border-radius: 30px;
+  font-size: 16px;
+}
+
+.hero button {
+  padding: 14px 24px;
+  border: 2px solid #2b3fbf;
+  border-radius: 30px;
+  background-color: #2b3fbf;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Mobil */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 130px;
+  }
+
+  .hero-billede {
+    width: 200px;
+    height: 150px;
+    margin-top: -90px;
+  }
+
+  .maerkat-hoejre {
+    display: none;
+  }
+}
+.box1 h2 {
   margin-top: 3rem;
   margin-left: 3rem;
 }
