@@ -134,7 +134,7 @@ button {
 }
 
 .btn-tag:hover {
-  background-color: var(--knap-blaa);
+  background-color: #f87f14;
   color: var(--knap-hvid);
 }
 
