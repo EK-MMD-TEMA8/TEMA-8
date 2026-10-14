@@ -1,3 +1,9 @@
+/* main {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+} */
+
 h1,
 h2 {
   text-align: center;
@@ -40,6 +46,16 @@ h2 {
 .recipe-card p {
   font-size: 12px;
 }
+/* body {
+  margin: 0;
+  background-color: var(--bagground-color);
+  font-family: Arial, sans-serif;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+} */
 
 /* FILTER */
 
@@ -85,6 +101,7 @@ h2 {
 
 .filter-buttons {
   display: grid;
+  /* grid-template-columns: repeat(2, 1fr); */
   /* Så mange kolonner der er plads til, men hver knap er mindst 140px bred */
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 1rem;
@@ -96,11 +113,36 @@ h2 {
   }
 }
 
+/* .filter-buttons button {
+  padding: 10px 20px;
+  border: 1px solid #555;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+} */
+
 /* Så "Under 30 min" bliver på én linje */
 .filter-buttons .btn-tag {
   white-space: nowrap;
   padding: 6px 16px;
 }
+
+/* .readmore {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: #d4a373;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.readmore:hover {
+  background-color: #bc8a5f;
+  transform: translateY(-3px);
+} */
 
 .readmore {
   margin-top: 20px;
@@ -214,6 +256,14 @@ h2 {
   margin: 40px 0 80px;
 }
 
+/* .more-btn {
+  padding: 12px 32px;
+  border: 1px solid #3047d8;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+} */
+
 /* Blå og større end de andre knapper, så den skiller sig ud */
 .more-btn {
   background-color: var(--knap-blaa);
@@ -236,6 +286,7 @@ h2 {
 .kitchen-section {
   background: #ddd3ba;
   padding: 60px 30px;
+  /* margin-bottom: 50px; */
   /* Ingen luft under, så den går helt ned til footeren */
   margin-bottom: 0;
   /* -2rem fjerner main's padding, så sektionen går fra kant til kant (som .box1 på forsiden) */
@@ -293,6 +344,20 @@ h2 {
   border-radius: 50%;
   object-fit: cover;
 }
+/* .cuisine-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+
+  background: white;
+  border: 2px solid #304ffe;
+  border-radius: 999px;
+
+  color: black;
+  text-decoration: none;
+  font-size: 0.9rem;
+} */
+
 .cuisine-btn {
   display: inline-block;
   margin-top: 1rem;

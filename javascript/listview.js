@@ -1,3 +1,4 @@
+// const recipeURL = "https://dummyjson.com/recipes";
 // limit=0 = hent alle opskrifter, ikke kun de første 30
 const recipeURL = "https://dummyjson.com/recipes?limit=0";
 
@@ -68,6 +69,7 @@ function getData(url) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      // showRecipes(data.recipes);
       allRecipes = data.recipes;
       showCuisineButtons();
       filterRecipes();
@@ -198,6 +200,7 @@ moreButton.addEventListener("click", () => {
   showRecipes();
 });
 
+// function showRecipes(recipes) {
 function showRecipes() {
   listContainer.innerHTML = "";
 
@@ -213,6 +216,7 @@ function showRecipes() {
   }
 
   recipes.forEach((recipe) => {
+    // <a href="recipe.html?id=${recipe.id}" class="readmore">
     listContainer.innerHTML += `
       <article class="recipe-card">
         <img src="${recipe.image}" alt="${recipe.name}">
@@ -247,6 +251,7 @@ fetch("https://dummyjson.com/recipes")
     const selectedCuisines = cuisines.slice(0, 4);
 
     selectedCuisines.forEach((recipe) => {
+      // class="cuisine-btn"
       kitchenContainer.innerHTML += `
         <article class="kitchen-card">
           <img src="${recipe.image}" alt="${recipe.cuisine}">
