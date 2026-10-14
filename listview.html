@@ -25,33 +25,39 @@
             <ul class="menu">
                 <li>
                     <details>
+
+
                         <summary>Meals</summary>
-                        <!-- <summary>Måltider</summary> -->
-                        <ul class="undermenu" id="mealMenu">
-                            <!-- <li><a href="/listview?mealType=breakfast">Morgenmad</a></li>
-                            <li><a href="/listview?mealType=lunch">Frokost</a></li>
-                            <li><a href="/listview?mealType=dinner">Aftensmad</a></li>
-                            <li><a href="/listview?mealType=dessert">Dessert</a></li> -->
-                        </ul>
+                        <!-- <ul class="undermenu">
+    <li><a href="/listview?mealType=breakfast">Morgenmad</a></li>
+    <li><a href="/listview?mealType=lunch">Frokost</a></li>
+    <li><a href="/listview?mealType=dinner">Aftensmad</a></li>
+    <li><a href="/listview?mealType=dessert">Dessert</a></li>
+</ul> -->
+                        <ul class="undermenu" id="mealMenu"></ul>
                     </details>
                 </li>
+                <!-- Før:
+                <li><a href="listview.html">Opskrifter</a></li>
+                <li><a href="omos.html">Om os</a></li>
+                -->
                 <li><a href="listview.html">Recipes</a></li>
                 <li><a href="omos.html">About us</a></li>
-                <!-- <li><a href="listview.html">Opskrifter</a></li>
-                <li><a href="omos.html">Om os</a></li> -->
             </ul>
 
             <a href="/">
+                <!-- Før: <img src="img/logo/logo.svg" alt="blåt yum Logo" /> -->
                 <img src="img/logo/logo.svg" alt="Blue Yum logo" />
-                <!-- <img src="img/logo/logo.svg" alt="blåt yum Logo" /> -->
             </a>
 
-            <!-- Search field -->
+            <!-- Search field (før: Søgefelt) -->
             <form class="search" role="search">
+                <!-- Før:
+                <img src="img/iconer/search-icon (1).svg" alt="søge icon" class="search-ikon" />
+                <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" />
+                -->
                 <img src="img/iconer/search-icon (1).svg" alt="Search icon" class="search-ikon" />
                 <input type="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
-                <!-- <img src="img/iconer/search-icon (1).svg" alt="søge icon" class="search-ikon" />
-                <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" /> -->
             </form>
 
             <button class="burger">
@@ -67,41 +73,38 @@
             <div class="filter-group">
                 <h3>MEALS</h3>
                 <div class="filter-buttons">
+
                     <button class="btn-tag" data-filter="mealType" data-value="All">ALL</button>
                     <button class="btn-tag" data-filter="mealType" data-value="Breakfast">BREAKFAST</button>
                     <button class="btn-tag" data-filter="mealType" data-value="Lunch">LUNCH</button>
                     <button class="btn-tag" data-filter="mealType" data-value="Dinner">DINNER</button>
                     <button class="btn-tag" data-filter="mealType" data-value="Dessert">DESSERT</button>
                     <button class="btn-tag" data-filter="mealType" data-value="Snack">SNACKS</button>
-                    <!-- <button class="active">ALL</button>
-                    <button>BREAKFAST</button>
-                    <button>LUNCH</button>
-                    <button>DINNER</button>
-                    <button>DESSERT</button>
-                    <button>SNACKS</button> -->
                 </div>
             </div>
             <div class="filter-group">
                 <h3>TIME</h3>
                 <div class="filter-buttons">
+
                     <button class="btn-tag" data-filter="time" data-value="All">ALL</button>
                     <button class="btn-tag" data-filter="time" data-value="Under">Under 30 min</button>
                     <button class="btn-tag" data-filter="time" data-value="Over">Over 30 min</button>
-                    <!-- <button>ALL</button>
-                    <button>Under 30 min</button>
-                    <button>Over 30 min</button> -->
                 </div>
             </div>
             <div class="filter-group">
                 <h3>CUISINE</h3>
-                <!-- Køkkenerne bliver lavet i listview.js ud fra API'et -->
-                <div class="filter-buttons" id="cuisineButtons">
-                    <button class="btn-tag" data-filter="cuisine" data-value="All">ALL</button>
-                    <!-- <button>ALL</button>
+                <!-- Før:
+                <div class="filter-buttons">
+                    <button>ALL</button>
                     <button>FRANCE</button>
                     <button>MEXICAN</button>
                     <button>ITALIAN</button>
-                    <button>ASIA</button> -->
+                    <button>ASIA</button>
+                </div>
+                -->
+                <!-- Køkkenerne bliver lavet i listview.js ud fra API'et -->
+                <div class="filter-buttons" id="cuisineButtons">
+                    <button class="btn-tag" data-filter="cuisine" data-value="All">ALL</button>
                 </div>
                 <!-- Viser/skjuler resten af køkkenerne -->
                 <button class="btn-opdag cuisine-more-btn" id="cuisineMore">See more</button>
@@ -111,64 +114,20 @@
         </section>
         <div class="separator"></div>
         <section class="intro-section">
+
+            <!-- Før: <h2>ALL RECIPES</h2> -->
             <h2 id="listTitle">ALL RECIPES</h2>
-            <!-- <h2>ALL RECIPES</h2> -->
             <a> OUR NEWEST RECIPES:</a>
         </section>
         <section id="recipeContainer" class="recipe-grid">
-            <!-- <section>
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-            </section>
-            <section>
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-            </section>
-            <section>
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-            </section> -->
         </section>
         <div class="button-wrapper">
+            <!-- Før: <button class="more-btn">See more</button> -->
             <button class="btn-opdag more-btn">See more</button>
-            <!-- <button class="more-btn">See more</button> -->
         </div>
         <section class="kitchen-section">
             <h2>Do you dare to try a new cuisin?</h2>
             <div id="kitchenContainer" class="kitchen-grid">
-                <!-- <div>
-                    <img src="" alt="">
-                    <div>
-                        <button> <a href="">Asian</a></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="" alt="">
-                    <div>
-                        <button> <a href="">France</a></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="" alt="">
-                    <div>
-                        <button> <a href="">Italy</a></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="" alt="">
-                    <div>
-                        <button> <a href="">Indian</a></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="" alt="">
-                    <div>
-                        <button> <a href="">Japanese</a></button>
-                    </div>
-                </div> -->
                 <img src="" alt="">
             </div>
         </section>
