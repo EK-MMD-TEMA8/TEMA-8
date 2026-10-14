@@ -163,6 +163,17 @@ main {
   margin-top: 1rem;
 }
 
+/* DESKTOP: alle køkkener vises, og "See more" skjules */
+@media (min-width: 800px) {
+  .filter-buttons .extra {
+    display: block;
+  }
+
+  .cuisine-more-btn {
+    display: none;
+  }
+}
+
 /* Tilbage-knappen under filtrene */
 .back-btn {
   margin-top: 2rem;
