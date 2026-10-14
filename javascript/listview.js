@@ -1,39 +1,65 @@
-const recipeContainer = document.querySelector("#recipeContainer");
+const recipeURL = "https://dummyjson.com/recipes";
 
-async function hentOpskrifter() {
-  const response = await fetch("https://dummyjson.com/recipes");
-  const data = await response.json();
+const listContainer = document.querySelector("#recipeContainer");
 
-  visOpskrifter(data.recipes);
+function getData(url) {
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      showRecipes(data.recipes);
+    });
 }
 
-function visOpskrifter(recipes) {
-  recipeContainer.innerHTML = "";
+function showRecipes(recipes) {
+  listContainer.innerHTML = "";
 
   recipes.forEach((recipe) => {
-    recipeContainer.innerHTML += `
-            <article class="recipe-card">
+    listContainer.innerHTML += `
+      <article class="recipe-card">
+        <img src="${recipe.image}" alt="${recipe.name}">
+        
+        <div class="recipe-content">
+          <h3>${recipe.name}</h3>
+          
+          <p>${recipe.cuisine}</p>
+          
+          <p>Time: ${recipe.prepTimeMinutes + recipe.cookTimeMinutes} min</p>
 
-                ${recipe.image}
-
-                <h3>${recipe.name}</h3>
-
-                <p>${recipe.cuisine}</p>
-
-                <p>${recipe.difficulty}</p>
-
-            </article>
-        `;
+          <a href="recipe.html?id=${recipe.id}" class="readmore">
+            Read more
+          </a>
+        </div>
+      </article>
+    `;
   });
 }
-container.innerHTML += `
-<article class="recipe-card">
 
-    ${recipe.image}
+getData(recipeURL);
 
-    <h3>${recipe.name}</h3>
+const kitchenContainer = document.querySelector("#kitchenContainer");
 
-    <p>${recipe.cuisine}</p>
+fetch("https://dummyjson.com/recipes")
+  .then((response) => response.json())
+  .then((data) => {
+    // Find unikke cuisines
+    const cuisines = [...new Map(data.recipes.map((recipe) => [recipe.cuisine, recipe])).values()];
 
-</article>
-`;
+    // Tag de første 4 forskellige cuisines
+    const selectedCuisines = cuisines.slice(0, 4);
+
+    selectedCuisines.forEach((recipe) => {
+      kitchenContainer.innerHTML += `
+        <article class="kitchen-card">
+          <img src="${recipe.image}" alt="${recipe.cuisine}">
+
+          <a 
+            href="listview.html?cuisine=${recipe.cuisine}"
+            class="cuisine-btn"
+          >
+            ${recipe.cuisine}
+          </a>
+        </article>
+      `;
+    });
+  });
