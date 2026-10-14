@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Findyourrecipe</title>
+    <title>Find your recipe</title>
     <script src="javascript/listview.js" defer></script>
     <link rel="stylesheet" href="css/generel.css">
     <link rel="stylesheet" href="css/listview.css">
@@ -52,42 +52,39 @@
             <div class="filter-group">
                 <h3>MEALS</h3>
                 <div class="filter-buttons">
-                    <button class="active">ALL</button>
-                    <button>BREAKFAST</button>
-                    <button>LUNCH</button>
-                    <button>DINNER</button>
-                    <button>DESSERT</button>
-                    <button>SNACKS</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="All">ALL</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Breakfast">BREAKFAST</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Lunch">LUNCH</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Dinner">DINNER</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Dessert">DESSERT</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Snack">SNACKS</button>
                 </div>
             </div>
             <div class="filter-group">
                 <h3>TIME</h3>
                 <div class="filter-buttons">
-                    <button>ALL</button>
-                    <button>Under 30 min</button>
-                    <button>Over 30 min</button>
+                    <button class="btn-tag" data-filter="time" data-value="All">ALL</button>
+                    <button class="btn-tag" data-filter="time" data-value="Under">Under 30 min</button>
+                    <button class="btn-tag" data-filter="time" data-value="Over">Over 30 min</button>
                 </div>
             </div>
             <div class="filter-group">
                 <h3>CUISINE</h3>
-                <div class="filter-buttons">
-                    <button>ALL</button>
-                    <button>FRANCE</button>
-                    <button>MEXICAN</button>
-                    <button>ITALIAN</button>
-                    <button>ASIA</button>
+                <!-- Køkkenerne bliver lavet i listview.js ud fra API'et -->
+                <div class="filter-buttons" id="cuisineButtons">
+                    <button class="btn-tag" data-filter="cuisine" data-value="All">ALL</button>
                 </div>
             </div>
         </section>
         <div class="separator"></div>
         <section class="intro-section">
-            <h2>ALL RECIPES</h2>
+            <h2 id="listTitle">ALL RECIPES</h2>
             <a> OUR NEWEST RECIPES:</a>
         </section>
         <section id="recipeContainer" class="recipe-grid">
         </section>
         <div class="button-wrapper">
-            <button class="more-btn">See more</button>
+            <button class="btn-opdag more-btn">See more</button>
         </div>
         <section class="kitchen-section">
             <h2>Do you dare to try a new cuisin?</h2>

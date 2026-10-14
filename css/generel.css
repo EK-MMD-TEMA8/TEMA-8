@@ -138,6 +138,12 @@ button {
   color: var(--knap-hvid);
 }
 
+/* Det valgte tag, fx i filtrene på listview */
+.btn-tag.active {
+  background-color: var(--knap-blaa);
+  color: var(--knap-hvid);
+}
+
 /* Opdag mere */
 .btn-opdag {
   background-color: var(--knap-beige);
