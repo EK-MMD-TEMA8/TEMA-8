@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/index.css">
 
     <script src="javascript/index.js" defer></script>
+    <script src="javascript/header.js" defer></script>
 
 </head>
 
@@ -28,12 +29,7 @@
                 <li>
                     <details>
                         <summary>Meals</summary>
-                        <ul class="undermenu">
-                            <li><a href="/listview?mealType=breakfast">Breakfast</a></li>
-                            <li><a href="/listview?mealType=lunch">Lunch</a></li>
-                            <li><a href="/listview?mealType=dinner">Dinner</a></li>
-                            <li><a href="/listview?mealType=dessert">Dessert</a></li>
-                        </ul>
+                        <ul class="undermenu" id="mealMenu"></ul>
                     </details>
                 </li>
                 <li><a href="listview.html">Recipes</a></li>
@@ -92,7 +88,7 @@
 
             <div class="box1-billede">
                 <img src="img/iconer/opskrifttegning.svg" alt="Illustrated recipe" class="box1-ikon"> <a
-                    href="/listview" class="btn-opdag box1-knap">See our recipes</a>
+                    href="listview.html" class="btn-opdag box1-knap">See our recipes</a>
             </div>
         </section>
 
@@ -108,7 +104,7 @@
                     30
                     minutes, with ingredients from your nearest supermarket. No need to overthink it – just get
                     started.</p>
-                <a href="/listview" class="btn-opdag box2-knap">Discover more</a>
+                <a href="listview.html" class="btn-opdag box2-knap">Discover more</a>
             </div>
 
             <div class="box2">
