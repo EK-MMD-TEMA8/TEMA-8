@@ -84,12 +84,39 @@ function showCuisineButtons() {
   // map = tag køkkenet fra hver opskrift, new Set = fjern dubletter, sort = sorter alfabetisk
   const cuisines = [...new Set(allRecipes.map((recipe) => recipe.cuisine))].sort();
 
-  cuisines.forEach((cuisine) => {
+  cuisines.forEach((cuisine, index) => {
     // "Asian" er gruppen med alle de asiatiske køkkener, så den hedder ASIA på knappen
     const label = cuisine === "Asian" ? "ASIA" : cuisine.toUpperCase();
-    cuisineButtons.innerHTML += `<button class="btn-tag" data-filter="cuisine" data-value="${cuisine}">${label}</button>`;
+
+    // De første 6 køkkener vises altid. Resten får klassen "extra" og er skjult, til man klikker "See more"
+    const extra = index >= cuisinesShown ? "extra" : "";
+
+    cuisineButtons.innerHTML += `<button class="btn-tag ${extra}" data-filter="cuisine" data-value="${cuisine}">${label}</button>`;
   });
+
+  // Er der valgt et skjult køkken (fx Thai fra forsiden), viser vi dem alle med det samme
+  const chosenButton = cuisineButtons.querySelector(`[data-value="${filters.cuisine}"]`);
+  if (chosenButton && chosenButton.classList.contains("extra")) {
+    toggleCuisines();
+  }
 }
+
+// Hvor mange køkkener der vises, før man klikker "See more"
+const cuisinesShown = 6;
+const cuisineMore = document.querySelector("#cuisineMore");
+
+// Vis eller skjul de ekstra køkkener
+function toggleCuisines() {
+  cuisineButtons.classList.toggle("show-all");
+
+  if (cuisineButtons.classList.contains("show-all")) {
+    cuisineMore.textContent = "See less";
+  } else {
+    cuisineMore.textContent = "See more";
+  }
+}
+
+cuisineMore.addEventListener("click", toggleCuisines);
 
 // Når man klikker på en knap, gemmer vi valget og filtrerer igen
 // Vi lytter på hele sektionen, så det også virker for køkkenknapperne, der bliver lavet senere

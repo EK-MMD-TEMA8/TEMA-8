@@ -107,6 +107,20 @@ h2 {
   margin-bottom: 30px;
 }
 
+/* De ekstra køkkener er skjult, indtil man klikker "See more" */
+.filter-buttons .extra {
+  display: none;
+}
+
+.filter-buttons.show-all .extra {
+  display: block;
+}
+
+/* "See more" under køkkenerne */
+.cuisine-more-btn {
+  margin-top: 1rem;
+}
+
 /* Tilbage-knappen under filtrene */
 .back-btn {
   margin-top: 2rem;
