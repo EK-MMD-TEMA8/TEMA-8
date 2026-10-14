@@ -1,9 +1,3 @@
-main {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 h1,
 h2 {
   text-align: center;
@@ -121,6 +115,23 @@ main {
   margin-top: 20px;
   margin-bottom: 30px;
 }
+
+/* Tilbage-knappen under filtrene */
+.back-btn {
+  margin-top: 2rem;
+  /* Samme orange som når man holder musen over tags */
+  background-color: #f87f14;
+  color: var(--knap-hvid);
+}
+
+.back-btn:hover {
+  background-color: #d96a0b;
+}
+
+/* btn-opdag har display: inline-block, så hidden skal have hjælp til at skjule knappen */
+.back-btn[hidden] {
+  display: none;
+}
 /* BLÅ STREG */
 
 .separator {
@@ -194,13 +205,32 @@ main {
   margin: 40px 0 80px;
 }
 
+/* Blå og større end de andre knapper, så den skiller sig ud */
+.more-btn {
+  background-color: var(--knap-blaa);
+  color: var(--knap-hvid);
+  padding: 16px 48px;
+  font-size: 1rem;
+}
+
+.more-btn:hover {
+  background-color: var(--knap-blaa-hover);
+}
+
+/* Skjul knappen, når alle opskrifter er vist */
+.more-btn[hidden] {
+  display: none;
+}
 
 /* NEDERSTE SEKTION */
 
 .kitchen-section {
   background: #ddd3ba;
   padding: 60px 30px;
-  margin-bottom: 50px;
+  /* Ingen luft under, så den går helt ned til footeren */
+  margin-bottom: 0;
+  /* Træk sektionen ud over main's max-width, så den fylder hele skærmens bredde */
+  margin-inline: calc(50% - 50vw);
 }
 
 .kitchen-section h2 {
@@ -234,6 +264,13 @@ main {
 
   overflow-x: auto;
   padding: 1rem 0;
+}
+
+/* På store skærme fordeler vi køkkenerne jævnt over hele bredden */
+@media (min-width: 1000px) {
+  .kitchen-grid {
+    justify-content: space-evenly;
+  }
 }
 .kitchen-card {
   flex: 0 0 220px;

@@ -5,19 +5,63 @@ const listContainer = document.querySelector("#recipeContainer");
 const listTitle = document.querySelector("#listTitle");
 const filterSection = document.querySelector(".filter-section");
 const cuisineButtons = document.querySelector("#cuisineButtons");
+const backButton = document.querySelector("#backButton");
+const moreButton = document.querySelector(".more-btn");
 
 // Her gemmer vi alle opskrifterne, så vi kan filtrere uden at hente dem igen
 let allRecipes = [];
 
+// "See more": vi viser 12 opskrifter ad gangen
+const perPage = 12;
+let shown = perPage;
+// De opskrifter, der passer til filtrene lige nu
+let currentRecipes = [];
+
+// Hvor mange gange man har klikket på et filter, siden man kom ind på siden
+// Er det 0, er der ikke noget at gå tilbage til, og så skjuler vi tilbage-knappen
+// history.state er der, hvis man kommer tilbage fra en opskrift
+let clicks = history.state ? history.state.clicks : 0;
+
+const filters = {};
+readFiltersFromURL();
+
+// Kommer man ind med et filter, fx fra Breakfast i headeren, lægger vi en "ALL" ind før det i historikken
+// Så ender tilbage-knappen altid på ALL
+// (history.state er tom, når man lige er kommet ind på siden)
+if (!history.state && window.location.search !== "") {
+  const filteredURL = window.location.search;
+
+  // replaceState = lav det nuværende punkt om til ALL, pushState = læg filteret ovenpå
+  history.replaceState({ clicks: 0 }, "", window.location.pathname);
+  history.pushState({ clicks: 1 }, "", filteredURL);
+  clicks = 1;
+}
+
 // Læs filtrene fra URL'en, fx listview.html?mealType=Breakfast
 // Står der ikke noget i URL'en, bruger vi "All"
-const params = new URLSearchParams(window.location.search);
+function readFiltersFromURL() {
+  const params = new URLSearchParams(window.location.search);
 
-const filters = {
-  mealType: params.get("mealType") || "All",
-  cuisine: params.get("cuisine") || "All",
-  time: "All",
-};
+  filters.mealType = params.get("mealType") || "All";
+  filters.cuisine = params.get("cuisine") || "All";
+  filters.time = params.get("time") || "All";
+}
+
+// Skriv filtrene ind i URL'en, så browserens tilbage-knap husker dem
+function saveFiltersInURL() {
+  const params = new URLSearchParams();
+
+  // Vi tager kun de filtre med, der ikke er "All"
+  Object.keys(filters).forEach((key) => {
+    if (filters[key] !== "All") {
+      params.set(key, filters[key]);
+    }
+  });
+
+  clicks++;
+  // pushState = lav et nyt punkt i historikken uden at hente siden igen
+  history.pushState({ clicks: clicks }, "", `?${params}`);
+}
 
 function getData(url) {
   fetch(url)
@@ -51,9 +95,27 @@ function showCuisineButtons() {
 // Vi lytter på hele sektionen, så det også virker for køkkenknapperne, der bliver lavet senere
 filterSection.addEventListener("click", (event) => {
   const button = event.target.closest("button");
-  if (!button) return;
+  // Kun filterknapperne har data-filter, så tilbage-knappen bliver sprunget over her
+  if (!button || !button.dataset.filter) return;
+
+  // Klikker man på den knap, der allerede er valgt, sker der ingenting
+  if (filters[button.dataset.filter] === button.dataset.value) return;
 
   filters[button.dataset.filter] = button.dataset.value;
+  saveFiltersInURL();
+  filterRecipes();
+});
+
+// Tilbage-knappen gør det samme som browserens tilbage-pil
+backButton.addEventListener("click", () => {
+  history.back();
+});
+
+// popstate sker, når man går tilbage (eller frem) i historikken
+// Så læser vi filtrene fra URL'en igen og viser de rigtige opskrifter
+window.addEventListener("popstate", (event) => {
+  clicks = event.state ? event.state.clicks : 0;
+  readFiltersFromURL();
   filterRecipes();
 });
 
@@ -72,9 +134,16 @@ function filterRecipes() {
     return mealOk && cuisineOk && timeOk;
   });
 
+  // Nye filtre = start forfra med de første 12
+  currentRecipes = filtered;
+  shown = perPage;
+
   showActiveButtons();
   showTitle();
-  showRecipes(filtered);
+  showRecipes();
+
+  // Vis kun tilbage-knappen, når der er et tidligere filter at gå tilbage til
+  backButton.hidden = clicks === 0;
 }
 
 // Giv den valgte knap i hver gruppe klassen "active"
@@ -96,8 +165,20 @@ function showTitle() {
   }
 }
 
-function showRecipes(recipes) {
+// "See more" viser 12 opskrifter mere
+moreButton.addEventListener("click", () => {
+  shown += perPage;
+  showRecipes();
+});
+
+function showRecipes() {
   listContainer.innerHTML = "";
+
+  // slice = tag kun de første opskrifter, fx 0-12, så 0-24 osv.
+  const recipes = currentRecipes.slice(0, shown);
+
+  // Skjul "See more", når alle opskrifterne er vist
+  moreButton.hidden = shown >= currentRecipes.length;
 
   if (recipes.length === 0) {
     listContainer.innerHTML = "<p>No recipes match your choice.</p>";

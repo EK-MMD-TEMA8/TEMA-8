@@ -1,6 +1,4 @@
 "use strict";
-// limit=0 = hent alle opskrifter, ikke kun de første 30
-const recipeURL = "https://dummyjson.com/recipes?limit=0";
 
 // TRIN 1: API-ADRESSEN
 // limit=0 = hent alle opskrifter, ikke kun de første 30
