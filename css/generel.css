@@ -446,6 +446,20 @@ details[open] summary::after {
   height: 3px;
   margin: 6px 0;
   background-color: var(--brødtekst-color);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Når menuen er åben, bliver stregerne til et kryds */
+.burger.active .line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.burger.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active .line:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Når man klikker på burgeren, vises menuen i højre side under headeren */
