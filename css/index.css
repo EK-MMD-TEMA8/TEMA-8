@@ -81,7 +81,7 @@
   box-sizing: border-box;
   margin-bottom: 14px;
   padding: 14px 20px;
-  border: 2px solid #2b3fbf;
+  border: 2px solid var(--knap-blaa);
   border-radius: 30px;
   font-size: 16px;
 }
@@ -89,9 +89,9 @@
 .hero button {
   width: 100%;
   padding: 14px 24px;
-  border: 2px solid #2b3fbf;
+  border: 2px solid var(--knap-blaa);
   border-radius: 30px;
-  background-color: #2b3fbf;
+  background-color: var(--knap-blaa);
   color: white;
   font-size: 16px;
   cursor: pointer;
