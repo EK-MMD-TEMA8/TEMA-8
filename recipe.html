@@ -5,14 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Arbutus+Slab&family=Figtree:wght@300..900&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/generel.css">
+    <link rel="stylesheet" href="css/generel.css">
 </head>
 
 <body>
     <header>
-        <h1>Recipe</h1>
+        <nav>
+            <ul class="menu">
+                <li>
+                    <details>
+                        <summary>Måltider</summary>
+                        <ul class="undermenu">
+                            <li><a href="/listview?mealType=breakfast">Morgenmad</a></li>
+                            <li><a href="/listview?mealType=lunch">Frokost</a></li>
+                            <li><a href="/listview?mealType=dinner">Aftensmad</a></li>
+                            <li><a href="/listview?mealType=dessert">Dessert</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li><a href="/listview">Opskrifter</a></li>
+                <li><a href="/omos">Om os</a></li>
+            </ul>
+
+            <a href="/">
+                <img src="/img/logo/roed-logo.png" alt="Yum, gå til forsiden" />
+            </a>
+
+            <!-- Søgefelt -->
+            <form class="search" role="search">
+                <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" />
+            </form>
+
+            <button class="burger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </nav>
     </header>
 
     <main>
+
+
+
     </main>
 
     <footer>
