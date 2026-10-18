@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/recipe.css">
     <script src="javascript/header.js" defer></script>
     <script src="javascript/burger.js" defer></script>
+    <script src="javascript/recipe.js" defer></script>
 
 </head>
 
@@ -64,22 +65,58 @@
         </nav>
     </header>
 
-    <main>
-        <h1>overskrift</h1>
-        <h2>overskrift</h2>
-        <h2>overskrift</h2>
-        <h3>overskrift</h3>
-        <p>brødtekst</p>
+    <main class="recipe">
+        <section class="recipe-hero">
+            <div class="recipe-intro">
+                <div class="recipe-text">
+                    <h1 id="recipeTitle">Loading recipe…</h1>
+                    <dl class="recipe-facts" id="recipeFacts"></dl>
+                </div>
+                <img class="recipe-doodle" src="img/iconer/opskrifttegning.svg" alt="">
+            </div>
+            <img class="recipe-image" id="recipeImage" alt="">
+        </section>
 
-        <button>
-            <p>Ccmvdvdmklas</p>
-        </button>
-        <button>
-            <p>Ccmvdvdmklas</p>
-        </button>
+        <section class="recipe-body" id="recipeBody">
+            <div class="ingredients-panel">
+                <button class="discount-badge" id="discountButton" aria-haspopup="dialog">Get a discount next time you
+                    shop</button>
+                <div class="ingredients-card">
+                    <h2>Ingredients</h2>
+                    <ul class="ingredient-list" id="ingredientList"></ul>
+                </div>
+            </div>
 
+            <div class="method">
+                <h2>How to</h2>
+                <ol class="instruction-list" id="instructionList"></ol>
+            </div>
+        </section>
+
+        <section class="recipe-back">
+            <p>Changed your mind? That's okay.<br>We still have plenty of other dishes.</p>
+            <a href="listview.html" class="btn-back">Back</a>
+        </section>
     </main>
+    <dialog class="discount-dialog" id="discountDialog" aria-labelledby="discountTitle">
+        <div class="dialog-inner">
+            <button class="dialog-close" id="dialogClose" aria-label="Close">×</button>
 
+            <div class="dialog-content" id="discountForm">
+                <h2 id="discountTitle">Get 15% off your next shop</h2>
+                <p>Sign up to our newsletter and we'll send your discount code straight to your inbox.</p>
+                <form class="dialog-form" id="signupForm">
+                    <input type="email" id="signupEmail" placeholder="yourname@gmail.com" aria-label="Email" required>
+                    <button type="submit">Sign me up</button>
+                </form>
+            </div>
+
+            <div class="dialog-content" id="discountThanks" hidden>
+                <h2>You're in!</h2>
+                <p>Check your inbox for your discount code.</p>
+            </div>
+        </div>
+    </dialog>
     <footer>
         <div class="footer-venstre">
             <img src="img/logo/logo.svg" alt="Yum logo" class="footer-logo">
@@ -98,5 +135,6 @@
     </footer>
 
 </body>
+
 
 </html>
