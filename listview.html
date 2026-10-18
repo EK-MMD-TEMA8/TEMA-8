@@ -47,9 +47,10 @@
             </a>
 
             <!-- Search field -->
-            <form class="search" role="search">
+            <!-- action + name = søgningen sendes til listview.html?search=... -->
+            <form class="search" role="search" action="listview.html">
                 <img src="img/iconer/search-icon (1).svg" alt="Search icon" class="search-ikon" />
-                <input type="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
+                <input type="search" name="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
                 <!-- <img src="img/iconer/search-icon (1).svg" alt="søge icon" class="search-ikon" />
                 <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" /> -->
             </form>
@@ -159,6 +160,12 @@
                 <img src="" alt="">
             </section> -->
         </section>
+        <!-- Vises kun, når en søgning ikke giver nogen opskrifter -->
+        <section class="empty-state" id="emptyState" hidden>
+            <h2>No recipes for "<span id="emptyWord"></span>"</h2>
+            <p>We don't have that one yet – but you can ask us to make it.</p>
+            <a class="btn-opdag request-btn" id="requestLink" href="request.html">Request it →</a>
+        </section>
         <div class="button-wrapper">
             <button class="btn-opdag more-btn">See more</button>
             <!-- <button class="more-btn">See more</button> -->
@@ -198,7 +205,6 @@
                         <button> <a href="">Japanese</a></button>
                     </div>
                 </div> -->
-                q <img src="" alt="">
             </div>
         </section>
     </main>

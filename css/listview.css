@@ -292,6 +292,38 @@ main {
   display: none;
 }
 
+/* TOM SØGNING */
+
+.empty-state {
+  text-align: center;
+  padding: 20px 20px 40px;
+}
+
+.empty-state h2 {
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  margin: 0 auto 2rem;
+}
+
+/* Samme blå som "See more", så det er tydeligt, hvad man skal gøre */
+.request-btn {
+  background-color: var(--knap-blaa);
+  color: var(--knap-hvid);
+  padding: 16px 48px;
+  font-size: 1rem;
+}
+
+.request-btn:hover {
+  background-color: var(--knap-blaa-hover);
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
 /* NEDERSTE SEKTION */
 
 .kitchen-section {

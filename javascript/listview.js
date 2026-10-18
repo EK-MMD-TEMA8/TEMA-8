@@ -8,6 +8,8 @@ const filterSection = document.querySelector(".filter-section");
 const cuisineButtons = document.querySelector("#cuisineButtons");
 const backButton = document.querySelector("#backButton");
 const moreButton = document.querySelector(".more-btn");
+const emptyState = document.querySelector("#emptyState");
+const searchInput = document.querySelector(".search input");
 
 // Her gemmer vi alle opskrifterne, så vi kan filtrere uden at hente dem igen
 let allRecipes = [];
@@ -46,6 +48,11 @@ function readFiltersFromURL() {
   filters.mealType = params.get("mealType") || "All";
   filters.cuisine = params.get("cuisine") || "All";
   filters.time = params.get("time") || "All";
+  // Søgeordet fra søgefeltet i headeren, fx listview.html?search=lasagne
+  filters.search = params.get("search") || "All";
+
+  // Søgeordet bliver stående i søgefeltet, så man kan se, hvad man har søgt på
+  searchInput.value = filters.search === "All" ? "" : filters.search;
 }
 
 // Skriv filtrene ind i URL'en, så browserens tilbage-knap husker dem
@@ -159,8 +166,11 @@ function filterRecipes() {
     const mealOk = filters.mealType === "All" || recipe.mealType.some((type) => type.startsWith(filters.mealType));
     const cuisineOk = filters.cuisine === "All" || cuisineList.includes(recipe.cuisine);
     const timeOk = filters.time === "All" || (filters.time === "Under" && time < 30) || (filters.time === "Over" && time >= 30);
+    // toLowerCase, så "Lasagne" og "lasagne" giver det samme. Vi søger i både navn og tags
+    const searchText = `${recipe.name} ${recipe.tags.join(" ")}`.toLowerCase();
+    const searchOk = filters.search === "All" || searchText.includes(filters.search.toLowerCase());
 
-    return mealOk && cuisineOk && timeOk;
+    return mealOk && cuisineOk && timeOk && searchOk;
   });
 
   // Nye filtre = start forfra med de første 12
@@ -185,6 +195,14 @@ function showActiveButtons() {
 
 // Skriv hvad der er valgt i overskriften, fx "BREAKFAST RECIPES"
 function showTitle() {
+  // "OUR NEWEST RECIPES:" passer ikke til en søgning, så den skjules dér
+  document.querySelector(".intro-section a").hidden = filters.search !== "All";
+
+  if (filters.search !== "All") {
+    listTitle.textContent = `Results for "${filters.search}"`;
+    return;
+  }
+
   const chosen = [filters.cuisine, filters.mealType].filter((value) => value !== "All");
 
   if (chosen.length === 0) {
@@ -209,8 +227,15 @@ function showRecipes() {
 
   // Skjul "See more", når alle opskrifterne er vist
   moreButton.hidden = shown >= currentRecipes.length;
+  emptyState.hidden = true;
 
   if (recipes.length === 0) {
+    // Søgte man efter noget, vi ikke har, kan man ønske opskriften
+    if (filters.search !== "All") {
+      showEmptyState();
+      return;
+    }
+
     listContainer.innerHTML = "<p>No recipes match your choice.</p>";
     return;
   }
@@ -235,6 +260,14 @@ function showRecipes() {
       </article>
     `;
   });
+}
+
+// Tom søgning: vis "Request it" og send søgeordet med til request-siden
+function showEmptyState() {
+  document.querySelector("#emptyWord").textContent = filters.search;
+  // encodeURIComponent gør, at mellemrum og æøå ikke ødelægger URL'en
+  document.querySelector("#requestLink").href = `request.html?dish=${encodeURIComponent(filters.search)}`;
+  emptyState.hidden = false;
 }
 
 getData(recipeURL);

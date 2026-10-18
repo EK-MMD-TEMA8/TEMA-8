@@ -40,9 +40,10 @@
             </a>
 
             <!-- Search field -->
-            <form class="search" role="search">
+            <!-- action + name = søgningen sendes til listview.html?search=... -->
+            <form class="search" role="search" action="listview.html">
                 <img src="img/iconer/search-icon (1).svg" alt="Search icon" class="search-ikon" />
-                <input type="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
+                <input type="search" name="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
                 <!-- <img src="img/iconer/search-icon (1).svg" alt="søge icon" class="search-ikon" />
                 <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" /> -->
             </form>
