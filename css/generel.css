@@ -488,58 +488,100 @@ nav.active .menu {
 }
 
 /* ==========================================
-   FOOTER 
+   FOOTER
+   Mobil: alt står centreret under hinanden.
+   Fra 800px: logo til venstre og nyhedsbrev til højre.
 ========================================== */
 
 footer {
+  background-color: var(--footer-color);
   border-top: 1px solid #333;
-  padding: 40px 20px;
+  padding: 48px 24px;
   text-align: center;
 }
 
+/* Venstre del: logo, "Find us here" og ikoner */
+.footer-venstre {
+  display: flex;
+  flex-direction: column; /* under hinanden */
+  align-items: center; /* centreret */
+  gap: 12px;
+}
+
 .footer-logo {
-  width: 200px;
+  width: 160px;
 }
 
 .footer-find {
   font-family: "Anton SC", sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  margin: 0;
 }
 
+/* Ikonerne ligger ved siden af hinanden */
 .footer-ikoner {
   display: flex;
   justify-content: center;
   gap: 12px;
 }
 
-.footer-ikoner img {
-  width: 32px;
+/* Hvert ikon er en rund, blå knap */
+.footer-ikoner a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%; /* 50% = cirkel */
+  background-color: var(--knap-blaa);
 }
 
+.footer-ikoner a:hover {
+  background-color: var(--knap-blaa-hover);
+}
+
+/* Selve tegningen inde i cirklen (hvid, se img/iconer/*.svg) */
+.footer-ikoner img {
+  width: 22px;
+  height: 22px;
+}
+
+/* Højre del: nyhedsbrevet */
 .footer-hoejre {
-  margin-top: 40px;
+  max-width: 360px;
+  margin: 40px auto 0;
 }
 
 .footer-hoejre h2 {
   font-family: "Anton SC", sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.3;
   color: #7a6a4f;
+  margin: 0 0 16px;
 }
-@media (min-width: 600px) {
+
+/* Feltet og knappen fylder hele bredden af nyhedsbrevet */
+.footer-hoejre .footer-button1,
+.footer-hoejre .footer-button2 {
+  width: 100%;
+}
+
+/* --- Computer: logo til venstre, nyhedsbrev til højre --- */
+@media (min-width: 800px) {
   footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between; /* skub de to dele ud til hver side */
     align-items: center;
+    padding: 64px max(48px, calc((100% - 1100px) / 2)); /* indholdet bliver max 1100px bredt */
   }
 
   .footer-hoejre {
-    margin-top: 0;
+    margin: 0;
     text-align: left;
   }
 
-  .footer-button1,
-  .footer-button2 {
-    width: 260px;
-    margin-left: 0;
+  .footer-hoejre .footer-button1 {
+    text-align: left;
   }
 }
