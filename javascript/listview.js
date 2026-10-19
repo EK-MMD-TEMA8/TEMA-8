@@ -1,32 +1,31 @@
 // RECIPES-SIDEN (listview)
-// Hele flowet: hent alle opskrifter → læs filtre og søgning fra URL'en
-// → vis de opskrifter, der passer. Findes der ingen, kan man ønske retten.
+// Henter alle opskrifter, læser filtre og søgning fra URL'en og viser de opskrifter, der passer.
+// Giver en søgning ingen resultater, vises et link til request-siden.
 
 // ---------------------------------------------------------------
-// 1. API-adressen
+// 1. API-adresse
 // ---------------------------------------------------------------
-// Adressen, hvor alle opskrifterne ligger. limit=0 = hent dem alle (ellers kun 30)
+// limit=0 henter alle opskrifter (standard er 30)
 const recipeURL = "https://dummyjson.com/recipes?limit=0";
 
 // ---------------------------------------------------------------
-// 2. Find de elementer i HTML'en, vi skal bruge
-// querySelector finder et element ud fra dets id (#) eller klasse (.)
+// 2. Elementer fra HTML'en
 // ---------------------------------------------------------------
-// Kassen, hvor opskrift-kortene bliver sat ind
+// Container til opskrift-kortene
 const listContainer = document.querySelector("#recipeContainer");
-// Overskriften over opskrifterne, fx "ALL RECIPES"
+// Overskrift over opskrifterne
 const listTitle = document.querySelector("#listTitle");
-// Hele området med filterknapperne
+// Området med filterknapper
 const filterSection = document.querySelector(".filter-section");
-// Kassen, hvor køkken-knapperne bliver sat ind
+// Container til køkken-knapperne
 const cuisineButtons = document.querySelector("#cuisineButtons");
-// "See more"-knappen under køkkenerne
+// "See more"-knap under køkkenerne
 const cuisineMore = document.querySelector("#cuisineMore");
-// "← Back"-knappen
+// "← Back"-knap
 const backButton = document.querySelector("#backButton");
-// "See more"-knappen under opskrifterne
+// "See more"-knap under opskrifterne
 const moreButton = document.querySelector(".more-btn");
-// Kassen med "No recipes for ..." og "Request it →"
+// Boks med "No recipes for ..." og "Request it →"
 const emptyState = document.querySelector("#emptyState");
 // Søgefeltet i headeren
 const searchInput = document.querySelector(".search input");
@@ -34,55 +33,51 @@ const searchInput = document.querySelector(".search input");
 const introLink = document.querySelector(".intro-section a");
 
 // ---------------------------------------------------------------
-// 3. Variabler, som husker ting, mens man er på siden
+// 3. Variabler
 // ---------------------------------------------------------------
-// Her gemmer vi alle opskrifterne fra API'et (tom liste til at starte med)
+// Alle opskrifter fra API'et
 let allRecipes = [];
 
-// Her gemmer vi de opskrifter, der passer til filtrene lige nu
+// Opskrifter, der passer til de valgte filtre
 let currentRecipes = [];
 
-// Vi viser 12 opskrifter ad gangen
+// Antal opskrifter pr. "See more"
 const perPage = 12;
-// Hvor mange opskrifter der vises lige nu (starter på 12)
+// Antal opskrifter, der vises nu
 let shown = perPage;
 
-// Hvor mange køkken-knapper der vises, før man klikker "See more"
+// Antal køkken-knapper, der vises før "See more"
 const cuisinesShown = 6;
 
-// Hvor mange gange man har klikket på et filter (starter på 0)
-// Er det 0, er der ikke noget at gå tilbage til, så "← Back" skjules
+// Antal klik på filtre. Ved 0 skjules "← Back"
 let clicks = 0;
 
-// history.state = det, browseren har gemt om siden.
-// Er det ikke tomt, kommer man tilbage fra en opskrift...
+// history.state er sat, når man kommer tilbage fra en opskrift
 if (history.state !== null) {
-  // ...så henter vi det antal klik, browseren huskede
+  // Brug det gemte antal klik
   clicks = history.state.clicks;
 }
 
 // ---------------------------------------------------------------
-// 4. Filtrene
+// 4. Filtre
 // ---------------------------------------------------------------
-// filters er et objekt, der husker, hvad der er valgt, fx:
-// { mealType: "Breakfast", cuisine: "All", time: "All", search: "All" }
-// "All" betyder "ikke valgt"
+// Det valgte i hvert filter, fx { mealType: "Breakfast", cuisine: "All", time: "All", search: "All" }
+// "All" = intet valgt
 const filters = {};
 
-// Læs filtrene fra URL'en med det samme (funktionen står i trin 5)
+// Læs filtrene fra URL'en (trin 5)
 readFiltersFromURL();
 
-// Er man lige kommet ind på siden (history.state er tom), OG står der et filter i URL'en...
-// (fx kom man fra "Breakfast" i headeren: listview.html?mealType=Breakfast)
+// Første besøg med et filter i URL'en (fx fra "Breakfast" i headeren)
 if (history.state === null && window.location.search !== "") {
-  // Gem filteret fra URL'en, fx "?mealType=Breakfast"
+  // Gem filteret, fx "?mealType=Breakfast"
   const filteredURL = window.location.search;
 
-  // Lav den nuværende side om til "ALL" i browserens historik
+  // Gør den nuværende side til "ALL" i historikken
   history.replaceState({ clicks: 0 }, "", window.location.pathname);
-  // Læg filteret ovenpå. Så ender "← Back" altid på ALL
+  // Læg filteret ovenpå, så "← Back" ender på ALL
   history.pushState({ clicks: 1 }, "", filteredURL);
-  // Nu er der ét klik at gå tilbage fra
+  // Ét klik at gå tilbage fra
   clicks = 1;
 }
 
@@ -90,67 +85,62 @@ if (history.state === null && window.location.search !== "") {
 // 5. Læs filtrene fra URL'en
 // ---------------------------------------------------------------
 function readFiltersFromURL() {
-  // Læs alt efter ? i adressen, fx ?mealType=Breakfast&search=lasagne
+  // Delen efter ? i adressen, fx ?mealType=Breakfast&search=lasagne
   const params = new URLSearchParams(window.location.search);
 
-  // Hent hvert filter. Står der ikke noget, bliver det "All" (se getFilter nedenfor)
+  // Hent hvert filter. Mangler det, bliver det "All"
   filters.mealType = getFilter(params, "mealType");
   filters.cuisine = getFilter(params, "cuisine");
   filters.time = getFilter(params, "time");
   filters.search = getFilter(params, "search");
 
-  // Har man ikke søgt...
+  // Ingen søgning: tomt søgefelt
   if (filters.search === "All") {
-    // ...så skal søgefeltet være tomt
     searchInput.value = "";
   } else {
-    // ...ellers skriver vi søgeordet i feltet, så man kan se, hvad man søgte på
+    // Ellers vises søgeordet i feltet
     searchInput.value = filters.search;
   }
 }
 
-// Hent ét filter fra URL'en, fx getFilter(params, "mealType") → "Breakfast"
+// Returnerer værdien af ét filter fra URL'en, eller "All" hvis det mangler
 function getFilter(params, name) {
-  // Find værdien i URL'en. Står der ikke noget, får vi null
+  // null, hvis filteret ikke står i URL'en
   const value = params.get(name);
 
-  // Står der ikke noget (null) eller er det tomt ("")...
+  // Mangler eller tom
   if (value === null || value === "") {
-    // ...så send "All" tilbage
     return "All";
   }
-  // Ellers send værdien tilbage, fx "Breakfast"
+  // Fx "Breakfast"
   return value;
 }
 
 // ---------------------------------------------------------------
-// 6. Skriv filtrene ind i URL'en
-// Så husker browserens tilbage-pil, hvad man havde valgt.
+// 6. Skriv filtrene i URL'en
+// Så browserens tilbage-pil husker valgene
 // ---------------------------------------------------------------
 function saveFiltersInURL() {
-  // Start med en tom "?..."-del
+  // Tom "?..."-del
   const params = new URLSearchParams();
 
-  // Er der valgt et måltid, så skriv det på, fx mealType=Breakfast
+  // Kun valgte filtre (ikke "All") kommer med
   if (filters.mealType !== "All") {
     params.set("mealType", filters.mealType);
   }
-  // Er der valgt et køkken, så skriv det på, fx cuisine=Italian
   if (filters.cuisine !== "All") {
     params.set("cuisine", filters.cuisine);
   }
-  // Er der valgt en tid, så skriv den på, fx time=Under
   if (filters.time !== "All") {
     params.set("time", filters.time);
   }
-  // Har man søgt, så skriv søgeordet på, fx search=pizza
   if (filters.search !== "All") {
     params.set("search", filters.search);
   }
 
-  // Tæl et klik op
+  // Tæl klik op
   clicks = clicks + 1;
-  // Lav et nyt punkt i browserens historik med den nye URL (uden at hente siden igen)
+  // Nyt punkt i historikken med den nye URL (siden genindlæses ikke)
   history.pushState({ clicks: clicks }, "", "?" + params);
 }
 
@@ -158,151 +148,141 @@ function saveFiltersInURL() {
 // 7. Hent data fra API'et
 // ---------------------------------------------------------------
 function getData(url) {
-  // fetch = "gå ud og hent" data fra adressen
+  // Hent data fra adressen
   fetch(url)
-    // Lav svaret om til noget, JavaScript kan læse
+    // Lav svaret om til JavaScript-data
     .then((response) => response.json())
-    // Når data er klar...
+    // Når data er klar
     .then((data) => {
-      // Vis data i konsollen (godt til at se, hvad API'et sender)
+      // Vis data i konsollen
       console.log(data);
-      // Gem alle opskrifterne, så vi kan filtrere dem senere
+      // Gem alle opskrifter
       allRecipes = data.recipes;
       // Lav køkken-knapperne (trin 8)
       showCuisineButtons();
-      // Find og vis de opskrifter, der passer (trin 11)
+      // Vis de opskrifter, der passer (trin 11)
       filterRecipes();
     });
 }
 
 // ---------------------------------------------------------------
-// 8. Køkken-knapperne
+// 8. Køkken-knapper
 // ---------------------------------------------------------------
-// Knappen "ASIA" dækker alle disse køkkener i API'et
+// Køkkener, som "ASIA"-knappen dækker
 const asianCuisines = ["Asian", "Japanese", "Thai", "Korean", "Vietnamese", "Indian", "Pakistani"];
 
 function showCuisineButtons() {
-  // En tom liste, som vi fylder med køkkener
+  // Liste med hvert køkken én gang
   const cuisines = [];
 
-  // Gå alle opskrifterne igennem én ad gangen
+  // Gennemgå alle opskrifter
   allRecipes.forEach((recipe) => {
-    // Står opskriftens køkken IKKE allerede på listen...
+    // Tilføj køkkenet, hvis det ikke allerede er på listen
     if (cuisines.includes(recipe.cuisine) === false) {
-      // ...så tilføj det. På den måde kommer hvert køkken kun med én gang
       cuisines.push(recipe.cuisine);
     }
   });
 
-  // Sorter listen alfabetisk (American, Asian, Brazilian ...)
+  // Sorter alfabetisk
   cuisines.sort();
 
-  // Lav en knap for hvert køkken. index = nummeret på listen (0, 1, 2 ...)
+  // Én knap pr. køkken. index = placering på listen (0, 1, 2 ...)
   cuisines.forEach((cuisine, index) => {
-    // Teksten på knappen er køkkenet med store bogstaver, fx "ITALIAN"
+    // Knaptekst med store bogstaver, fx "ITALIAN"
     let label = cuisine.toUpperCase();
-    // Men "Asian" skal hedde "ASIA" på knappen
+    // "Asian" vises som "ASIA"
     if (cuisine === "Asian") {
       label = "ASIA";
     }
 
-    // Som udgangspunkt er knappen almindelig (ingen ekstra klasse)
+    // Ingen ekstra klasse som udgangspunkt
     let extra = "";
-    // Er det knap nummer 7 eller derover (index 6+)...
+    // Knap 7 og frem får klassen "extra" og er skjult indtil "See more"
     if (index >= cuisinesShown) {
-      // ...så får den klassen "extra" og er skjult, til man klikker "See more"
       extra = "extra";
     }
 
-    // Sæt knappen ind i kassen
+    // Indsæt knappen
     cuisineButtons.innerHTML += `<button class="btn-tag ${extra}" data-filter="cuisine" data-value="${cuisine}">${label}</button>`;
   });
 
-  // Find knappen for det køkken, der er valgt lige nu (fx "Thai")
+  // Knappen for det valgte køkken, fx "Thai"
   const chosenButton = cuisineButtons.querySelector(`[data-value="${filters.cuisine}"]`);
-  // Findes den, OG er den en af de skjulte "extra"-knapper...
+  // Er den valgte knap skjult, vises alle køkkener
   if (chosenButton !== null && chosenButton.classList.contains("extra")) {
-    // ...så vis alle køkkenerne, så man kan se, hvilken der er valgt
     toggleCuisines();
   }
 }
 
 // Vis eller skjul de ekstra køkkener
 function toggleCuisines() {
-  // Vises de allerede (har kassen klassen "show-all")...
+  // Vises de allerede
   if (cuisineButtons.classList.contains("show-all")) {
-    // ...så skjul dem igen
+    // Skjul dem
     cuisineButtons.classList.remove("show-all");
-    // ...og skift teksten tilbage til "See more"
     cuisineMore.textContent = "See more";
   } else {
-    // Ellers: vis dem
+    // Vis dem
     cuisineButtons.classList.add("show-all");
-    // ...og skift teksten til "See less"
     cuisineMore.textContent = "See less";
   }
 }
 
-// Når man klikker "See more" under køkkenerne, så kør toggleCuisines
+// Klik på "See more" under køkkenerne
 cuisineMore.addEventListener("click", toggleCuisines);
 
 // ---------------------------------------------------------------
-// 9. Når man klikker på en filterknap
+// 9. Klik på en filterknap
 // ---------------------------------------------------------------
-// Vi lytter på hele filter-området, så det også virker for køkken-knapperne,
-// der først bliver lavet, når data er hentet
+// Lytter på hele filter-området, så det også virker for køkken-knapperne,
+// der først laves, når data er hentet
 filterSection.addEventListener("click", (event) => {
-  // Find den knap, man har klikket på
+  // Den knap, der blev klikket på
   const button = event.target.closest("button");
 
-  // Klikkede man ikke på en knap (fx på en overskrift)...
+  // Klik uden for en knap
   if (button === null) {
-    // ...så stop her
     return;
   }
 
-  // Hvilket filter knappen hører til, fx "mealType"
+  // Filtrets navn, fx "mealType"
   const filterName = button.dataset.filter;
-  // Hvilken værdi knappen har, fx "Breakfast"
+  // Knappens værdi, fx "Breakfast"
   const filterValue = button.dataset.value;
 
-  // Har knappen ikke noget filter ("See more" og "← Back")...
+  // Knapper uden filter ("See more" og "← Back")
   if (filterName === undefined) {
-    // ...så stop her
     return;
   }
 
-  // Er knappen allerede valgt...
+  // Knappen er allerede valgt
   if (filters[filterName] === filterValue) {
-    // ...så sker der ingenting
     return;
   }
 
-  // Gem det nye valg, fx filters.mealType = "Breakfast"
+  // Gem valget, fx filters.mealType = "Breakfast"
   filters[filterName] = filterValue;
-  // Skriv valget ind i URL'en (trin 6)
+  // Skriv valget i URL'en (trin 6)
   saveFiltersInURL();
-  // Find og vis de opskrifter, der passer (trin 11)
+  // Vis de opskrifter, der passer (trin 11)
   filterRecipes();
 });
 
 // ---------------------------------------------------------------
 // 10. Tilbage
 // ---------------------------------------------------------------
-// Når man klikker "← Back"...
+// "← Back" gør det samme som browserens tilbage-pil
 backButton.addEventListener("click", () => {
-  // ...så gør det samme som browserens tilbage-pil
   history.back();
 });
 
-// popstate sker, når man går tilbage (eller frem) med browserens pile
+// popstate: man er gået tilbage eller frem med browserens pile
 window.addEventListener("popstate", (event) => {
-  // Har browseren ikke gemt noget om siden...
+  // Intet gemt = ingen klik at gå tilbage til
   if (event.state === null) {
-    // ...så er der ingen klik at gå tilbage til
     clicks = 0;
   } else {
-    // ...ellers hent det antal klik, den huskede
+    // Brug det gemte antal klik
     clicks = event.state.clicks;
   }
 
@@ -316,162 +296,149 @@ window.addEventListener("popstate", (event) => {
 // 11. Find de opskrifter, der passer
 // ---------------------------------------------------------------
 function filterRecipes() {
-  // En tom liste, som vi fylder med de opskrifter, der passer
+  // Opskrifter, der passer
   const filtered = [];
 
-  // Gå alle opskrifterne igennem én ad gangen
+  // Gennemgå alle opskrifter
   allRecipes.forEach((recipe) => {
-    // Passer måltid OG køkken OG tid OG søgning (&& = "og")...
+    // Måltid, køkken, tid og søgning skal alle passe (&& = og)
     if (mealMatches(recipe) && cuisineMatches(recipe) && timeMatches(recipe) && searchMatches(recipe)) {
-      // ...så kommer opskriften med på listen
       filtered.push(recipe);
     }
   });
 
-  // Gem listen med de opskrifter, der passer
+  // Gem resultatet
   currentRecipes = filtered;
-  // Start forfra med at vise de første 12
+  // Start forfra med 12
   shown = perPage;
 
-  // Marker de valgte knapper (trin 12)
+  // Marker valgte knapper (trin 12)
   showActiveButtons();
-  // Skriv overskriften (trin 13)
+  // Opdater overskriften (trin 13)
   showTitle();
   // Vis opskrifterne (trin 15)
   showRecipes();
 
-  // Er der ikke klikket på noget endnu...
+  // Ingen klik: skjul "← Back"
   if (clicks === 0) {
-    // ...så er der intet at gå tilbage til, så skjul "← Back"
     backButton.hidden = true;
   } else {
-    // ...ellers vis "← Back"
     backButton.hidden = false;
   }
 }
 
-// Passer måltidet? Svarer true (ja) eller false (nej)
+// Passer måltidet? (true/false)
 function mealMatches(recipe) {
-  // Er der ikke valgt et måltid, passer alle opskrifter
+  // Intet måltid valgt: alle passer
   if (filters.mealType === "All") {
     return true;
   }
 
-  // Start med at sige "nej"
   let match = false;
-  // En opskrift kan have flere måltider, fx ["Lunch", "Dinner"]. Tjek hvert af dem
+  // En opskrift kan have flere måltider, fx ["Lunch", "Dinner"]
   recipe.mealType.forEach((type) => {
-    // startsWith, fordi API'et både bruger "Snack" og "Snacks"
+    // startsWith, fordi API'et bruger både "Snack" og "Snacks"
     if (type.startsWith(filters.mealType)) {
-      // Fandt vi måltidet, så sig "ja"
       match = true;
     }
   });
-  // Send svaret tilbage
   return match;
 }
 
-// Passer køkkenet? Svarer true (ja) eller false (nej)
+// Passer køkkenet? (true/false)
 function cuisineMatches(recipe) {
-  // Er der ikke valgt et køkken, passer alle opskrifter
+  // Intet køkken valgt: alle passer
   if (filters.cuisine === "All") {
     return true;
   }
 
-  // Er "ASIA" valgt, passer alle de asiatiske køkkener
+  // "ASIA" passer til alle asiatiske køkkener
   if (filters.cuisine === "Asian") {
     return asianCuisines.includes(recipe.cuisine);
   }
 
-  // Ellers skal køkkenet være præcis det valgte, fx "Italian"
+  // Ellers skal køkkenet være det valgte
   return recipe.cuisine === filters.cuisine;
 }
 
-// Passer tiden? Svarer true (ja) eller false (nej)
+// Passer tiden? (true/false)
 function timeMatches(recipe) {
-  // Den samlede tid = forberedelse + tilberedning
+  // Samlet tid = forberedelse + tilberedning
   const time = recipe.prepTimeMinutes + recipe.cookTimeMinutes;
 
-  // Er "Under 30 min" valgt, passer den, hvis tiden er under 30
+  // "Under 30 min"
   if (filters.time === "Under") {
     return time < 30;
   }
-  // Er "Over 30 min" valgt, passer den, hvis tiden er 30 eller mere
+  // "Over 30 min"
   if (filters.time === "Over") {
     return time >= 30;
   }
-  // Er der ikke valgt en tid ("All"), passer alle opskrifter
+  // "All": alle passer
   return true;
 }
 
-// Passer søgningen? Svarer true (ja) eller false (nej)
+// Passer søgningen? (true/false)
 function searchMatches(recipe) {
-  // Har man ikke søgt, passer alle opskrifter
+  // Ingen søgning: alle passer
   if (filters.search === "All") {
     return true;
   }
 
-  // Sæt navn og tags sammen til én tekst, fx "Classic Margherita Pizza Pizza Italian"
-  // toLowerCase = lav det til små bogstaver, så "Lasagne" og "lasagne" giver det samme
+  // Navn og tags samlet i én tekst med små bogstaver (så store/små bogstaver er ligegyldige)
   const searchText = (recipe.name + " " + recipe.tags.join(" ")).toLowerCase();
-  // Står søgeordet et sted i teksten?
+  // Indeholder teksten søgeordet?
   return searchText.includes(filters.search.toLowerCase());
 }
 
 // ---------------------------------------------------------------
-// 12. Marker de valgte knapper
+// 12. Marker valgte knapper
 // ---------------------------------------------------------------
 function showActiveButtons() {
-  // Find alle filterknapperne
+  // Alle filterknapper
   const buttons = document.querySelectorAll(".filter-buttons button");
 
-  // Gå knapperne igennem én ad gangen
   buttons.forEach((button) => {
-    // Er knappens værdi den, der er valgt i filteret...
+    // Den valgte knap får klassen "active"
     if (filters[button.dataset.filter] === button.dataset.value) {
-      // ...så giv den klassen "active" (den bliver blå)
       button.classList.add("active");
     } else {
-      // ...ellers fjern klassen
       button.classList.remove("active");
     }
   });
 }
 
 // ---------------------------------------------------------------
-// 13. Overskriften
+// 13. Overskrift
 // ---------------------------------------------------------------
 function showTitle() {
-  // Har man søgt...
+  // Ved søgning: 'Results for "pizza"'
   if (filters.search !== "All") {
-    // ...så står søgeordet i overskriften, fx 'Results for "pizza"'
     listTitle.textContent = `Results for "${filters.search}"`;
-    // "OUR NEWEST RECIPES:" passer ikke til en søgning, så skjul den
+    // "OUR NEWEST RECIPES:" skjules ved søgning
     introLink.hidden = true;
-    // Stop her
     return;
   }
 
-  // Ingen søgning: vis "OUR NEWEST RECIPES:"
+  // Uden søgning vises "OUR NEWEST RECIPES:"
   introLink.hidden = false;
 
-  // Byg overskriften op, start med tom tekst
+  // Byg overskriften af køkken og måltid
   let title = "";
-  // Er der valgt et køkken, så sæt det på, fx "Italian "
+  // Fx "Italian "
   if (filters.cuisine !== "All") {
     title = title + filters.cuisine + " ";
   }
-  // Er der valgt et måltid, så sæt det på, fx "Italian Dinner "
+  // Fx "Italian Dinner "
   if (filters.mealType !== "All") {
     title = title + filters.mealType + " ";
   }
 
-  // Er der hverken valgt køkken eller måltid...
+  // Intet valgt: "ALL RECIPES"
   if (title === "") {
-    // ...så står der "ALL RECIPES"
     listTitle.textContent = "ALL RECIPES";
   } else {
-    // ...ellers fx "ITALIAN DINNER RECIPES" (toUpperCase = store bogstaver)
+    // Fx "ITALIAN DINNER RECIPES"
     listTitle.textContent = (title + "RECIPES").toUpperCase();
   }
 }
@@ -479,61 +446,52 @@ function showTitle() {
 // ---------------------------------------------------------------
 // 14. "See more" under opskrifterne
 // ---------------------------------------------------------------
-// Når man klikker "See more"...
 moreButton.addEventListener("click", () => {
-  // ...så vis 12 opskrifter mere
+  // 12 opskrifter mere
   shown = shown + perPage;
-  // ...og tegn opskrifterne igen
   showRecipes();
 });
 
 // ---------------------------------------------------------------
-// 15. Vis opskrifterne – eller "Request it", hvis der ingen er
-// Her bestemmes det, om retten findes:
-// - Der er opskrifter → lav et kort for hver
-// - Ingen opskrifter + man har søgt → vis "Request it →"
-// - Ingen opskrifter + kun filtre → "No recipes match your choice."
+// 15. Vis opskrifterne
+// - Opskrifter fundet → ét kort pr. opskrift
+// - Ingen fundet ved søgning → "Request it →"
+// - Ingen fundet ved filtre → "No recipes match your choice."
 // ---------------------------------------------------------------
 function showRecipes() {
-  // Tøm kassen, før vi fylder den igen
+  // Tøm containeren
   listContainer.innerHTML = "";
 
-  // Tag kun de første opskrifter fra listen, fx nr. 0-12 (slice = skær ud)
+  // De første opskrifter på listen, fx nr. 0-12
   const recipes = currentRecipes.slice(0, shown);
 
-  // shown = hvor mange vi viser lige nu (fx 12)
-  // currentRecipes.length = hvor mange der er i alt (fx 30)
-  // Viser vi allerede dem alle...
+  // shown = antal viste, currentRecipes.length = antal i alt
+  // Alle er vist: skjul "See more"
   if (shown >= currentRecipes.length) {
-    // ...så er der ikke flere at se, så skjul "See more"
     moreButton.hidden = true;
   } else {
-    // ...ellers er der flere tilbage, så vis "See more"
     moreButton.hidden = false;
   }
 
-  // Skjul "Request it" til at starte med (den vises kun ved en tom søgning)
+  // "Request it" er skjult som udgangspunkt
   emptyState.hidden = true;
 
-  // Blev der ikke fundet nogen opskrifter (recipes.length = antal)...
+  // Ingen opskrifter fundet
   if (recipes.length === 0) {
-    // ...og har man søgt på noget, vi ikke har...
+    // Ved søgning: vis "Request it →" (trin 16)
     if (filters.search !== "All") {
-      // ...så vis "Request it →" (trin 16)
       showEmptyState();
-      // Stop her, så der ikke laves kort af ingenting
       return;
     }
 
-    // Har man kun valgt filtre, så skriv bare en besked
+    // Ved filtre: vis en besked
     listContainer.innerHTML = "<p>No recipes match your choice.</p>";
-    // Stop her
     return;
   }
 
-  // Gå opskrifterne igennem én ad gangen og lav et kort for hver
+  // Ét kort pr. opskrift
   recipes.forEach((recipe) => {
-    // += = sæt kortet ind efter dem, der allerede er der
+    // += tilføjer kortet efter de eksisterende
     listContainer.innerHTML += `
       <article class="recipe-card">
         <img src="${recipe.image}" alt="${recipe.name}">
@@ -555,55 +513,51 @@ function showRecipes() {
 }
 
 // ---------------------------------------------------------------
-// 16. Tom søgning: vis "Request it →"
+// 16. Tom søgning: "Request it →"
 // ---------------------------------------------------------------
 function showEmptyState() {
-  // Skriv søgeordet ind i teksten "No recipes for ..."
+  // Søgeordet i teksten "No recipes for ..."
   document.querySelector("#emptyWord").textContent = filters.search;
 
-  // Lav linket til request-siden med søgeordet, fx request.html?dish=lasagne
-  // encodeURIComponent gør, at mellemrum og æøå ikke ødelægger URL'en
+  // Link til request-siden med søgeordet, fx request.html?dish=lasagne
+  // encodeURIComponent sørger for, at mellemrum og æøå virker i URL'en
   document.querySelector("#requestLink").href = "request.html?dish=" + encodeURIComponent(filters.search);
 
-  // Vis kassen med "Request it →"
+  // Vis boksen
   emptyState.hidden = false;
 }
 
 // ---------------------------------------------------------------
-// 17. Start det hele
+// 17. Start
 // ---------------------------------------------------------------
-// Funktionerne ovenfor gør ingenting, før de bliver kaldt.
-// Denne linje henter opskrifterne og sætter det hele i gang
+// Henter opskrifterne og starter siden
 getData(recipeURL);
 
 // ---------------------------------------------------------------
-// 18. "Do you dare to try a new cuisine?" nederst på siden
+// 18. "Do you dare to try a new cuisine?"
 // ---------------------------------------------------------------
-// Kassen, hvor de runde køkken-billeder bliver sat ind
+// Container til køkken-billederne
 const kitchenContainer = document.querySelector("#kitchenContainer");
 
 // Hent opskrifterne
 fetch("https://dummyjson.com/recipes")
-  // Lav svaret om til noget, JavaScript kan læse
+  // Lav svaret om til JavaScript-data
   .then((response) => response.json())
-  // Når data er klar...
   .then((data) => {
-    // Et tomt objekt, hvor vi gemmer én opskrift pr. køkken
+    // Én opskrift pr. køkken
     const oneRecipePerCuisine = {};
 
-    // Gå alle opskrifterne igennem
     data.recipes.forEach((recipe) => {
-      // Gem opskriften under køkkenets navn, fx oneRecipePerCuisine["Italian"]
-      // Kommer samme køkken igen, bliver den gamle bare overskrevet
+      // Gemmes under køkkenets navn. Samme køkken overskriver den forrige
       oneRecipePerCuisine[recipe.cuisine] = recipe;
     });
 
-    // Lav objektet om til en almindelig liste med opskrifter
+    // Lav objektet om til en liste
     const cuisines = Object.values(oneRecipePerCuisine);
-    // Tag kun de første 4
+    // De første 4
     const selectedCuisines = cuisines.slice(0, 4);
 
-    // Lav et rundt billede + knap for hvert af de 4 køkkener
+    // Ét rundt billede + knap pr. køkken
     selectedCuisines.forEach((recipe) => {
       // Knappen linker til listview med køkkenet valgt, fx ?cuisine=Italian
       kitchenContainer.innerHTML += `
