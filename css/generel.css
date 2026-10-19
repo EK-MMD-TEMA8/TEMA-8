@@ -16,7 +16,7 @@ img {
   /* FARVER */
   --header-color: #e3d3b8;
   --bagground-color: #fdf8ec;
-  --footer-color: #f7f5ef;
+  --footer-color: #d1daff;
 
   --h1-color: #000000;
   --h2-color-1: #1f3fcc;
@@ -485,6 +485,38 @@ nav.active .menu {
   .burger {
     display: none;
   }
+}
+
+/* ==========================================
+   TEGNINGER
+   De blå håndtegninger i img/iconer (tom gryde, ønskeliste, kuvert,
+   kokkehue). Samme stil som opskrift-tegningen på forsiden.
+========================================== */
+
+.tegning {
+  display: block;
+  width: 140px;
+  margin: 0 auto 24px; /* centreret med luft under */
+}
+
+/* Lidt større på computer */
+@media (min-width: 800px) {
+  .tegning {
+    width: 180px;
+  }
+}
+
+/* ==========================================
+   OM OS (siden er under udvikling)
+========================================== */
+
+.om-os {
+  text-align: center;
+  padding: 80px 20px 120px;
+}
+
+.om-os p {
+  margin-bottom: 2rem;
 }
 
 /* ==========================================

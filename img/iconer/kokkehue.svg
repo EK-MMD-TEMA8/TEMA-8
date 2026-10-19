@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 300" fill="none" stroke="#2b3ec4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Kokkehue og grydeske: "vi er i gang i køkkenet" -->
+
+  <!-- Grydeske på skrå bag huen -->
+  <path d="M262 46 C286 30 312 40 310 62 C308 84 282 92 262 80 C252 72 252 56 262 46 Z" fill="#ffffff" />
+  <path d="M258 80 L150 210" />
+
+  <!-- Huens skyer -->
+  <path d="M98 176 C62 172 46 140 62 116 C76 94 104 94 118 108 C118 76 146 56 174 62 C200 66 214 88 212 108 C230 94 262 100 270 124 C278 150 260 174 232 178" fill="#ffffff" />
+
+  <!-- Huens bånd -->
+  <path d="M96 172 C140 178 190 178 236 172 L240 248 C190 256 142 256 92 248 Z" fill="#ffffff" />
+  <!-- Folder i båndet -->
+  <path d="M132 186 L130 240" />
+  <path d="M166 188 L166 244" />
+  <path d="M200 186 L202 240" />
+
+  <!-- Lille stjerne -->
+  <path d="M58 46 L58 74" />
+  <path d="M44 60 L72 60" />
+</svg>

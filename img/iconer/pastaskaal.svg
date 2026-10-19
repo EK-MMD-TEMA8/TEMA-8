@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342 328" fill="none" stroke="#2b3ec4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Dampende skål pasta med gaffel: "lækker, sund og nem mad" -->
+
+  <!-- Damp -->
+  <path d="M112 40 C100 56 126 66 114 84" />
+  <path d="M160 26 C146 46 174 58 160 80" />
+  <path d="M208 40 C196 56 222 66 210 84" />
+
+  <!-- Gaffel, der stikker op af pastaen -->
+  <path d="M236 146 L278 74" />
+  <path d="M266 66 C272 80 286 86 298 78" />
+  <path d="M268 66 L280 46" />
+  <path d="M280 72 L292 52" />
+  <path d="M292 78 L304 58" />
+
+  <!-- Pasta-bunken (kun over skålens kant) -->
+  <path d="M62 164 C62 136 86 118 112 122 C126 100 166 96 184 114 C206 102 236 112 244 136 C262 136 278 150 278 164" />
+  <!-- Bølgede pasta-linjer -->
+  <path d="M94 150 C106 138 118 158 130 146 C142 134 154 156 166 144 C178 132 190 154 202 142 C214 130 226 150 236 142" />
+  <path d="M120 128 C130 120 140 136 150 128 C160 120 170 134 180 126" />
+
+  <!-- Skålens kant -->
+  <path d="M40 166 C120 162 222 162 302 168" />
+  <!-- Skålen -->
+  <path d="M42 170 C46 234 96 272 172 274 C246 272 296 234 300 172" />
+  <!-- Skålens fod -->
+  <path d="M126 272 C124 286 132 294 148 294 L196 294 C212 294 220 286 218 272" />
+
+  <!-- Genskin på skålen -->
+  <path d="M78 198 C84 216 96 230 112 240" />
+</svg>

@@ -63,6 +63,26 @@ main {
   padding: 60px 40px;
 }
 
+/* Tegningen til højre for filtrene er skjult på mobil og tablet */
+.filter-tegning {
+  display: none;
+}
+
+/* Først på brede skærme er der plads til den ved siden af knapperne */
+@media (min-width: 1300px) {
+  .filter-section {
+    position: relative; /* så tegningen kan placeres ud fra sektionen */
+  }
+
+  .filter-tegning {
+    display: block;
+    position: absolute;
+    top: 150px; /* ud for MEALS og TIME, over køkken-knapperne */
+    right: 6%;
+    width: 220px;
+  }
+}
+
 .filter-section h1 {
   text-align: center;
   font-size: 3rem;
@@ -312,8 +332,16 @@ main {
 .request-btn {
   background-color: var(--knap-blaa);
   color: var(--knap-hvid);
-  padding: 16px 48px;
+  padding: 16px 32px;
   font-size: 1rem;
+  white-space: nowrap; /* teksten skal blive på én linje */
+}
+
+/* Lidt bredere knap på computer */
+@media (min-width: 800px) {
+  .request-btn {
+    padding: 16px 48px;
+  }
 }
 
 .request-btn:hover {
