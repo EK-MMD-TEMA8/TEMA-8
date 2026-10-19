@@ -26,27 +26,33 @@
                 <li>
                     <details>
                         <summary>Meals</summary>
-
+                        <!-- <summary>Måltider</summary> -->
                         <ul class="undermenu" id="mealMenu">
-
+                            <!-- <li><a href="/listview?mealType=breakfast">Morgenmad</a></li>
+                            <li><a href="/listview?mealType=lunch">Frokost</a></li>
+                            <li><a href="/listview?mealType=dinner">Aftensmad</a></li>
+                            <li><a href="/listview?mealType=dessert">Dessert</a></li> -->
                         </ul>
                     </details>
                 </li>
                 <li><a href="listview.html">Recipes</a></li>
                 <li><a href="omos.html">About us</a></li>
-
+                <!-- <li><a href="listview.html">Opskrifter</a></li>
+                <li><a href="omos.html">Om os</a></li> -->
             </ul>
 
             <a href="/">
                 <img src="img/logo/logo.svg" alt="Blue Yum logo" />
-
+                <!-- <img src="img/logo/logo.svg" alt="blåt yum Logo" /> -->
             </a>
 
-
+            <!-- Search field -->
+            <!-- action + name = søgningen sendes til listview.html?search=... -->
             <form class="search" role="search" action="listview.html">
                 <img src="img/iconer/search-icon (1).svg" alt="Search icon" class="search-ikon" />
                 <input type="search" name="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
-
+                <!-- <img src="img/iconer/search-icon (1).svg" alt="søge icon" class="search-ikon" />
+                <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" /> -->
             </form>
 
             <button class="burger">
@@ -59,10 +65,19 @@
     <main>
         <section class="filter-section">
             <h1>Find your next recipe</h1>
-
+            <!-- Tegning i den tomme plads til højre for filtrene (vises kun på brede skærme) -->
+            <img src="img/iconer/forstoerrelsesglas.svg" alt="" class="filter-tegning">
+            <!-- <div>
+                <button> <a href="index.html">Back</a></button>
+            </div>
+            <h1>
+                Find your next recipe
+            </h1> -->
             <div class="filter-group">
                 <h3>MEALS</h3>
-
+                <!-- <h3>
+                    Meals
+                </h3> -->
                 <div class="filter-buttons">
                     <button class="btn-tag" data-filter="mealType" data-value="All">ALL</button>
                     <button class="btn-tag" data-filter="mealType" data-value="Breakfast">BREAKFAST</button>
@@ -70,43 +85,82 @@
                     <button class="btn-tag" data-filter="mealType" data-value="Dinner">DINNER</button>
                     <button class="btn-tag" data-filter="mealType" data-value="Dessert">DESSERT</button>
                     <button class="btn-tag" data-filter="mealType" data-value="Snack">SNACKS</button>
-
+                    <!-- <button class="active">ALL</button>
+                    <button>BREAKFAST</button>
+                    <button>LUNCH</button>
+                    <button>DINNER</button>
+                    <button>DESSERT</button>
+                    <button>SNACKS</button> -->
                 </div>
             </div>
             <div class="filter-group">
                 <h3>TIME</h3>
-
-
+                <!-- <h3>
+                    Cooking time
+                </h3> -->
                 <div class="filter-buttons">
                     <button class="btn-tag" data-filter="time" data-value="All">ALL</button>
                     <button class="btn-tag" data-filter="time" data-value="Under">Under 30 min</button>
                     <button class="btn-tag" data-filter="time" data-value="Over">Over 30 min</button>
-
+                    <!-- <button>ALL</button>
+                    <button>Under 30 min</button>
+                    <button>Over 30 min</button> -->
                 </div>
             </div>
             <div class="filter-group">
                 <h3>CUISINE</h3>
-
+                <!-- <h3>
+                    Cuisine
+                </h3> -->
+                <!-- Køkkenerne bliver lavet i listview.js ud fra API'et -->
                 <div class="filter-buttons" id="cuisineButtons">
                     <button class="btn-tag" data-filter="cuisine" data-value="All">ALL</button>
-
+                    <!-- <button>ALL</button>
+                    <button>FRANCE</button>
+                    <button>MEXICAN</button>
+                    <button>ITALIAN</button>
+                    <button>ASIA</button> -->
                 </div>
                 <!-- Viser/skjuler resten af køkkenerne -->
                 <button class="btn-opdag cuisine-more-btn" id="cuisineMore">See more</button>
             </div>
             <!-- Går tilbage til det filter, man havde valgt før -->
             <button class="btn-opdag back-btn" id="backButton" hidden>← Back</button>
+            <!-- <section>
 
+            </section>
+            <section>
+
+            </section> -->
         </section>
         <div class="separator"></div>
         <section class="intro-section">
             <h2 id="listTitle">ALL RECIPES</h2>
-
+            <!-- <h2>ALL RECIPES</h2> -->
             <a> OUR NEWEST RECIPES:</a>
-
+            <!-- <h1>
+                Recipes
+            </h1>
+            <h3>
+                The newest recipes
+            </h3> -->
         </section>
         <section id="recipeContainer" class="recipe-grid">
-
+            <!-- <section>
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </section>
+            <section>
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </section>
+            <section>
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </section> -->
         </section>
         <!-- Vises kun, når en søgning ikke giver nogen opskrifter -->
         <section class="empty-state" id="emptyState" hidden>
@@ -117,13 +171,43 @@
         </section>
         <div class="button-wrapper">
             <button class="btn-opdag more-btn">See more</button>
-
+            <!-- <button class="more-btn">See more</button> -->
+            <!-- <p>See more</p> -->
         </div>
         <section class="kitchen-section">
             <h2>Do you dare to try a new cuisine?</h2>
-
+            <!-- <h2>Do you dare to try a new cuisine?</h2> -->
             <div id="kitchenContainer" class="kitchen-grid">
-
+                <!-- <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">Asian</a></button>
+                    </div>
+                </div>
+                <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">France</a></button>
+                    </div>
+                </div>
+                <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">Italy</a></button>
+                    </div>
+                </div>
+                <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">Indian</a></button>
+                    </div>
+                </div>
+                <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">Japanese</a></button>
+                    </div>
+                </div> -->
             </div>
         </section>
     </main>
