@@ -31,7 +31,7 @@ YUM er et dynamisk website med opskrifter til unge, der lige er flyttet hjemmefr
 └── img/
 ```
 
-Hver side har sin egen CSS-fil og sit eget script. `generel.css`, `header.js` og `burger.js` deles af alle sider. Alle scripts indlæses med `defer`, så HTML'en er klar, før JavaScript leder efter elementer (som f.eks. media query.
+Hver side har sin egen CSS-fil og sit eget script. `generel.css`, `header.js` og `burger.js` deles af alle sider. Alle scripts indlæses med `defer`, så HTML'en er klar, før JavaScript leder efter elementer (som f.eks. media query)
 
 **Navnekonventioner**
 
@@ -133,3 +133,5 @@ Hvert gruppemedlem arbejder på sin egen branch (`sandra`, `emma`, `Lachlan`) og
 - Sitet hostes statisk på GitHub Pages, så ingen server kører konstant.
 
 **Forbedringer:** lazy loading på billeder og at undgå et dobbelt API-kald i `listview.js`.
+
+**Brug af AI:** Vi har anvendt AI til strukturering af Teknisk Dokumentation
