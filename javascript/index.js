@@ -16,7 +16,7 @@ const recipesUrl = "https://dummyjson.com/recipes?limit=0";
 // Container til de små knapper (Italian, Breakfast ...)
 const vibeTags = document.querySelector(".vibe-tags");
 // Container til de store billedkort
-const kortListe = document.querySelector(".kort-liste");
+const cardList = document.querySelector(".kort-liste");
 
 // ---------------------------------------------------------------
 // 3. Start
@@ -47,7 +47,7 @@ function showData(data) {
   // Små knapper (trin 6)
   showVibeTags(data.recipes);
   // Store kort (trin 7)
-  showKort(data.recipes);
+  showCards(data.recipes);
 }
 
 // ---------------------------------------------------------------
@@ -93,7 +93,7 @@ function showVibeTags(recipes) {
 // 7. Inspirationskort
 // Ét kort med billede pr. måltid. Linker til listview med måltidet valgt.
 // ---------------------------------------------------------------
-function showKort(recipes) {
+function showCards(recipes) {
   // Samler HTML'en, før den sættes ind
   let myInnerHTML = "";
 
@@ -101,7 +101,7 @@ function showKort(recipes) {
   const mealTypes = ["Breakfast", "Lunch", "Dinner", "Dessert", "Snack"];
 
   // Hvilken opskrift hvert kort tager billedet fra (0 = første, 1 = anden ...)
-  const valgtOpskrift = { Breakfast: 3, Lunch: 3, Dinner: 3, Dessert: 0, Snack: 1 };
+  const chosenRecipe = { Breakfast: 3, Lunch: 3, Dinner: 3, Dessert: 0, Snack: 1 };
 
   // Ét kort pr. måltid
   mealTypes.forEach((mealType) => {
@@ -116,9 +116,9 @@ function showKort(recipes) {
     });
 
     // Nummeret for måltidet, fx Snack → 1
-    const nummer = valgtOpskrift[mealType];
+    const index = chosenRecipe[mealType];
     // Opskriften med det nummer
-    const recipe = matches[nummer];
+    const recipe = matches[index];
 
     // Kortet: sværhedsgrad, billede og måltidets navn
     myInnerHTML += `<a href="listview.html?mealType=${mealType}" class="kort">
@@ -129,5 +129,5 @@ function showKort(recipes) {
   });
 
   // Indsæt alle kortene
-  kortListe.innerHTML = myInnerHTML;
+  cardList.innerHTML = myInnerHTML;
 }
