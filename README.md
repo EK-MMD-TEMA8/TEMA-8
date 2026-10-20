@@ -8,7 +8,7 @@ Tema 8 · Web II · E2026 · Gruppe 9 – Emma Lejel, Lachlan Ryan, Sandra Møll
 
 YUM er et dynamisk website med opskrifter til unge, der lige er flyttet hjemmefra. Sitet er bygget i ren HTML, CSS og JavaScript uden frameworks, så koden kører direkte i browseren og kan hostes statisk på GitHub Pages.
 
----
+----
 
 ## 1. Opbygning
 
