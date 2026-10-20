@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 300" fill="none" stroke="#2b3ec4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Tom gryde med løftet låg og et spørgsmålstegn: "vi har ikke den opskrift" -->
+
+  <!-- Hanker -->
+  <path d="M62 152 C34 150 26 162 30 176 C34 190 50 192 66 186" />
+  <path d="M278 152 C306 150 314 162 310 176 C306 190 290 192 274 186" />
+
+  <!-- Selve gryden -->
+  <path d="M68 140 L80 246 C82 262 92 270 108 270 L232 270 C248 270 258 262 260 246 L272 140 Z" fill="#ffffff" />
+  <!-- Kanten -->
+  <path d="M54 128 C120 122 220 122 286 128 C290 136 290 142 286 148 C220 154 120 154 54 148 C50 142 50 134 54 128 Z" fill="#ffffff" />
+  <!-- To små streger på gryden -->
+  <path d="M104 196 L104 236" />
+  <path d="M124 214 L124 240" />
+
+  <!-- Låget svæver skævt over gryden -->
+  <path d="M70 92 C120 72 190 62 236 70 C240 78 238 84 232 88 C186 82 120 92 76 108 C68 104 66 98 70 92 Z" fill="#ffffff" />
+  <!-- Lågets knop -->
+  <path d="M142 74 C140 62 160 56 166 68" />
+
+  <!-- Spørgsmålstegn -->
+  <path d="M262 30 C262 12 282 6 294 14 C306 22 304 40 292 46 C284 50 282 56 282 66" />
+  <circle cx="282" cy="86" r="4" fill="#2b3ec4" />
+</svg>

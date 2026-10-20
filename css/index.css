@@ -1,0 +1,460 @@
+.hero {
+  position: relative;
+  background-color: #fdf8ec;
+  text-align: center;
+  padding: 40px 20px 70px;
+  font-family: "Figtree", sans-serif;
+}
+
+.hero h1 {
+  font-size: 130px;
+  font-weight: 400;
+  color: #2b3fbf;
+  margin: 0;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  line-height: 1;
+}
+
+.hero-billede {
+  display: block;
+  width: 220px;
+  height: 165px;
+  object-fit: cover;
+  margin: -10px auto 0;
+  position: relative;
+  border-radius: 16px;
+  transform: rotate(-5deg);
+  box-shadow: 4px 4px 1px #7f725f;
+}
+
+.hero-tekst {
+  max-width: 480px;
+  margin: 45px auto 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.hero-note {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  color: #000;
+  margin: 0 0 10px;
+  transform: rotate(-4deg);
+}
+
+.hero-note a {
+  color: #000;
+  text-decoration: none;
+}
+
+.hero-note a:hover {
+  text-decoration: underline;
+}
+
+.markat {
+  position: absolute;
+  width: fit-content;
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.markat-venstre {
+  top: 250px;
+  right: 5px;
+  color: #000;
+  background-color: #ff9131;
+  transform: rotate(10deg);
+}
+
+.markat-hoejre {
+  display: none;
+  background-color: white;
+  transform: rotate(-8deg);
+}
+
+.hero input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+  padding: 14px 20px;
+  border: 2px solid var(--knap-blaa);
+  border-radius: 30px;
+  font-size: 16px;
+}
+
+.hero button {
+  width: 100%;
+  padding: 14px 24px;
+  border: 2px solid var(--knap-blaa);
+  border-radius: 30px;
+  background-color: var(--knap-blaa);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media (min-width: 800px) {
+  .hero {
+    padding: 80px 20px 60px;
+  }
+
+  .hero h1 {
+    font-size: 250px;
+  }
+
+  .hero-billede {
+    width: 300px;
+    height: 230px;
+    margin-top: -120px;
+    margin-left: 55%;
+    transform: none;
+    margin-bottom: 5rem;
+  }
+
+  .hero-tekst {
+    font-size: 18px;
+    margin: 30px auto 20px;
+  }
+
+  .hero-note {
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    font-size: 26px;
+    margin: 0;
+  }
+
+  .markat {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  .markat-venstre {
+    top: 120px;
+    right: 22%;
+    transform: none;
+  }
+
+  .markat-hoejre {
+    display: block;
+    top: 190px;
+    left: 26%;
+    transform: none;
+  }
+  .hero input {
+    width: 280px;
+    margin-bottom: 0;
+  }
+
+  .hero button {
+    width: auto;
+  }
+}
+
+.box1 {
+  background-color: #c9d3f5;
+  margin-inline: -2rem;
+  padding: 40px 2rem;
+}
+
+.box1 h2 {
+  margin-top: 0;
+}
+
+.box1-ikon {
+  display: block;
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-inline: auto;
+}
+
+.streg {
+  border: none;
+  border-top: 8px solid #cad3fc;
+  border-bottom: 10px solid var(--knap-blaa);
+  margin-block: 60px;
+  margin-inline: -2rem;
+  margin-top: 0;
+}
+
+.box1-knap {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ff9131;
+}
+
+.box1-knap:hover {
+  background-color: #f87f14;
+}
+
+@media (min-width: 800px) {
+  /* Tekst og billede ved siden af hinanden */
+  .box1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding: 100px 100px;
+    margin-top: 3rem;
+  }
+
+  .box1 h2 {
+    margin-top: 0;
+  }
+
+  .box1-tekst p {
+    max-width: 300px;
+  }
+
+  .box1-ikon {
+    width: 300px;
+    margin: 0;
+    margin-block: 2rem;
+  }
+}
+/* Boksen alt bliver placeret ud fra */
+.box2 {
+  position: relative;
+  width: 220px;
+  margin: 80px auto;
+}
+
+/* Billedet */
+.box2-foto {
+  margin-top: 3rem;
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.box2-knap {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 10rem;
+}
+
+/* Den gule cirkel */
+.box2-tid {
+  position: absolute;
+  top: -50px;
+  left: -30px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: var(--gul-cirkel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: "Arbutus Slab", serif;
+  font-size: 1.2rem;
+}
+
+.box2-tekst h2 {
+  color: #000;
+}
+
+.box2-undertitel {
+  font-family: "Arbutus Slab", serif;
+  color: #7a6a4f;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.box2-ord {
+  position: absolute;
+  margin: 0;
+  font-family: "Anton SC", sans-serif;
+  font-size: 2rem;
+  color: var(--h2-color-1);
+  writing-mode: vertical-rl;
+}
+
+.nemt {
+  top: 10px;
+  right: -55px;
+}
+
+.hurtigt {
+  bottom: 60px;
+  left: -55px;
+  transform: rotate(180deg);
+}
+
+@media (min-width: 800px) {
+  .box2-sektion {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 160px;
+    padding: 100px 40px;
+  }
+
+  .box2-tekst {
+    max-width: 500px;
+  }
+
+  .box2-tekst h2 {
+    font-size: 2.5rem;
+  }
+
+  .box2-tekst p {
+    font-size: 1.2rem;
+  }
+
+  .box2 {
+    margin: 0;
+    width: 380px;
+  }
+}
+
+.vibe {
+  background-color: var(--knap-beige);
+  padding: 30px 20px;
+  text-align: center;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  margin-bottom: 2rem;
+}
+
+.vibe h2 {
+  font-family: "Anton SC", sans-serif;
+  font-size: 1.3rem;
+  margin-top: 0;
+  color: var(--h2-color-2);
+}
+
+/* Tags ved siden af hinanden, og de hopper ned på en ny linje, når der ikke er plads */
+.vibe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.vibe-tags a {
+  text-decoration: none;
+}
+
+.vibe-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: "Figtree", sans-serif;
+  color: var(--knap-tekst);
+  text-decoration: none;
+}
+
+.vibe-link:hover {
+  text-decoration: underline;
+}
+
+.inspiration {
+  padding: 40px 20px;
+}
+
+.inspiration h2 {
+  font-family: "Anton SC", sans-serif;
+  font-size: 1.6rem;
+  margin: 0;
+  color: var(--h2-color-2);
+}
+
+.inspiration-tekst {
+  font-family: "Arbutus Slab", serif;
+  font-size: 0.85rem;
+  color: #7a6a4f;
+  margin-bottom: 40px;
+}
+
+/* På mobil står kortene under hinanden */
+.kort-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Hvert kort er et link */
+.kort {
+  position: relative;
+  color: var(--knap-tekst);
+  text-decoration: none;
+}
+
+.kort-billede {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 3rem;
+}
+
+/* Titlen med streg under */
+.kort-titel {
+  font-family: "Anton SC", sans-serif;
+  font-size: 0.9rem;
+  margin: 20px 0 0;
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--knap-tekst);
+}
+
+/* Den gule cirkel (Nem, Populær) */
+.badge {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #e3d79f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: "Arbutus Slab", serif;
+}
+
+@media (min-width: 800px) {
+  /* "Se alle opskrifter" ude i højre side */
+  .vibe {
+    position: relative;
+  }
+
+  .vibe-link {
+    position: absolute;
+    right: 40px;
+    bottom: 30px;
+    margin: 0;
+  }
+
+  .inspiration {
+    padding: 60px 40px;
+  }
+
+  /* Kortene ved siden af hinanden */
+  .kort-liste {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .kort {
+    flex: 1 1 28%;
+  }
+
+  .kort-billede {
+    height: 400px;
+  }
+}

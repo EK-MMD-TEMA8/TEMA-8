@@ -1,21 +1,41 @@
-/* ==========================================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+} /* ==========================================
    FARVER OG SKRIFTSTØRRELSER
 ========================================== */
 
 /* MOBIL */
 :root {
   /* FARVER */
-  --header-color: #fffaeb;
-  --bagground-color: #fefaec;
-  --footer-color: #5c6a5a;
+  --header-color: #e3d3b8;
+  --bagground-color: #fdf8ec;
+  --footer-color: #d1daff;
 
-  --h1-color: #811921;
-  --h2-color-1: #c83d1e;
-  --h2-color-2: #5c6a5a;
-  --h3-color: #811921;
-  --brødtekst-color: #811921;
-  --banner-lysfarve: #e2ddc9;
-  --banner-mørkfarve: #bbb190;
+  --h1-color: #000000;
+  --h2-color-1: #1f3fcc;
+  --h2-color-2: #000000;
+  --h3-color: #67625b;
+  --brødtekst-color: #000000;
+  --banner-lysfarve: #e3d3b8;
+  --lyseblå-streg: #d1daff;
+  --gul-cirkel: #eed997;
+
+  /* KNAP FARVEE */
+  --knap-blaa: #2b3ec4;
+  --knap-blaa-hover: #0f2585;
+  --knap-beige: #e3d7bd;
+  --knap-beige-hover: #d4c49f;
+  --knap-creme: #fdf8ea;
+  --knap-hvid: #ffffff;
+  --knap-graa: #8a8a8a;
+  --knap-tekst: #1a1a1a;
 
   /* SKRIFTSTØRRELSER */
   --h1-size: 2rem;
@@ -38,12 +58,11 @@
    MAIN
 ========================================== */
 main {
-  background-color: var(--baggrud-color);
-  color: var(--brødtekst-color);
   padding-inline: 2rem;
 }
 
 body {
+  background-color: var(--bagground-color);
   margin: 0;
   padding: 0;
 }
@@ -92,109 +111,182 @@ p {
    KNAPPER
 ========================================== */
 
-/*generelle knapper*/
+/* Fælles for alle knapper */
 button {
-  background-color: var(--header-color);
-  color: var(--h1-color);
-  padding: 3px 20px;
-  border-radius: 20px;
-  border: 1px solid var(--h1-color);
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
-button:hover {
-  background-color: var(--brødtekst-color);
-  color: var(--header-color);
+/* Tags: Asiatisk, Morgenmad, Vegansk osv. */
+.btn-tag {
+  background-color: var(--knap-hvid);
+  color: var(--knap-tekst);
+  border: 1px solid var(--knap-blaa);
+  border-radius: 999px;
+  padding: 4px 16px;
+  font-family: "Figtree", sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
 }
 
-button:nth-of-type(2) {
-  background-color: #ffffff;
+.btn-tag:hover {
+  background-color: #f87f14;
+  color: var(--knap-hvid);
 }
 
-button:nth-of-type(2):hover {
-  background-color: var(--brødtekst-color);
-  color: var(--header-color);
+/* Det valgte tag, fx i filtrene på listview */
+.btn-tag.active {
+  background-color: var(--knap-blaa);
+  color: var(--knap-hvid);
 }
 
-/*footer knapper*/
+/* Opdag mere */
+.btn-opdag {
+  background-color: var(--knap-beige);
+  color: var(--knap-tekst);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 28px;
+  font-family: "Figtree", sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-opdag:hover {
+  background-color: var(--knap-beige-hover);
+}
+
+/* Filterknapperne */
+.btn-filter {
+  background-color: var(--knap-hvid);
+  color: var(--knap-tekst);
+  border: 1px solid var(--knap-graa);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: "Arbutus Slab", serif;
+  font-size: 0.9rem;
+}
+
+.btn-filter:hover {
+  border-color: var(--knap-tekst);
+}
+
+/* Den valgte filterknap */
+.btn-filter.active {
+  background-color: var(--knap-blaa);
+  color: var(--knap-hvid);
+  border-color: var(--knap-blaa);
+}
+
+/* Email-felt */
 .footer-button1 {
-  background-color: var(--footer-color);
-  color: var(--header-color);
-  padding: 1px 20px;
-  border-radius: 20px;
-  border: 2px solid var(--header-color);
+  display: block;
+  width: 90%;
+  margin: 0 auto 12px;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: var(--knap-creme);
+  color: var(--knap-blaa);
+  border: 1px solid var(--knap-blaa);
+  border-radius: 8px;
+  font-family: "Figtree", sans-serif;
+  font-size: 1rem;
+  text-align: center;
 }
 
-.footer-button1:hover {
-  background-color: var(--brødtekst-color);
-  color: var(--header-color);
+.footer-button1::placeholder {
+  color: var(--knap-blaa);
 }
 
+/* Tilmeld-knap */
 .footer-button2 {
-  background-color: var(--header-color);
-  color: var(--h1-color);
-  padding: 1px 20px;
-  border-radius: 20px;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: var(--knap-blaa);
+  color: var(--knap-hvid);
+  border: none;
+  border-radius: 8px;
+  font-family: "Figtree", sans-serif;
+  font-size: 1rem;
 }
 
 .footer-button2:hover {
-  background-color: var(--brødtekst-color);
-  color: var(--header-color);
+  background-color: var(--knap-blaa-hover);
 }
+
 /* ==========================================
    HEADER OG NAV
 ========================================== */
 
-/* MOBIL */
 header {
   position: relative;
   background-color: var(--header-color);
-  padding: 10px;
-  margin-inline: 0;
-  padding-block: 5rem;
+  padding: 10px 20px;
+  border-bottom: 1px solid #333;
 }
 
-/* Logo til venstre, søg i midten, burger til højre */
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Logoets størrelse */
 nav img {
-  height: 60px;
+  height: 50px;
 }
 
-/* DESKTOP */
 @media (min-width: 800px) {
   header {
-    padding: 20px 30px;
+    padding: 15px 40px;
   }
 
   nav img {
-    height: 80px;
+    height: 70px;
+  }
+
+  /* Menu og søg fylder lige meget, så logoet står i midten */
+  .menu,
+  .search {
+    flex: 1;
   }
 }
 /* ==========================================
    SØGEFELT
 ========================================== */
 
-/* MOBIL */
-/* Lidt luft til logo og burger */
 .search {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
   margin: 0 10px;
 }
 
-.search input {
-  width: 100%; /* feltet er lige så bredt som .search */
-  box-sizing: border-box;
-  border-radius: 20px; /* runde hjørner */
-  border: black 1px solid;
-  padding-block: 10px;
-  padding-left: 1rem;
+.search-ikon {
+  width: 20px;
 }
 
-/* DESKTOP */
+.search input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 1px solid var(--knap-blaa);
+  background-color: transparent;
+  padding: 8px 16px;
+  font-family: "Figtree", sans-serif;
+}
+
 @media (min-width: 800px) {
   .search {
     margin: 0;
@@ -245,6 +337,21 @@ nav img {
 
   .menu li {
     margin-bottom: 0;
+  }
+  .menu a,
+  .menu summary {
+    font-size: 1rem;
+    font-weight: 600;
+
+    padding: 8px 16px;
+    border-radius: 6px;
+  }
+
+  /* Beige baggrund ved hover og når Måltider er åben */
+  .menu a:hover,
+  .menu summary:hover,
+  details[open] summary {
+    background-color: var(--knap-beige);
   }
 }
 
@@ -306,7 +413,7 @@ details[open] summary::after {
     border-left: none;
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-    z-index: 10;
+    z-index: 100;
   }
 
   /* Så undermenuens punkter ikke fader sammen */
@@ -339,6 +446,22 @@ details[open] summary::after {
   height: 3px;
   margin: 6px 0;
   background-color: var(--brødtekst-color);
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
+}
+
+/* Når menuen er åben, bliver stregerne til et kryds */
+.burger.active .line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.burger.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active .line:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Når man klikker på burgeren, vises menuen i højre side under headeren */
@@ -365,28 +488,132 @@ nav.active .menu {
 }
 
 /* ==========================================
-   FOOTER % cta, de er længere oppe
+   TEGNINGER
+   De blå håndtegninger i img/iconer (tom gryde, ønskeliste, kuvert,
+   kokkehue). Samme stil som opskrift-tegningen på forsiden.
+========================================== */
+
+.tegning {
+  display: block;
+  width: 140px;
+  margin: 0 auto 24px; /* centreret med luft under */
+}
+
+/* Lidt større på computer */
+@media (min-width: 800px) {
+  .tegning {
+    width: 180px;
+  }
+}
+
+/* ==========================================
+   OM OS (siden er under udvikling)
+========================================== */
+
+.om-os {
+  text-align: center;
+  padding: 80px 20px 120px;
+}
+
+.om-os p {
+  margin-bottom: 2rem;
+}
+
+/* ==========================================
+   FOOTER
+   Mobil: alt står centreret under hinanden.
+   Fra 800px: logo til venstre og nyhedsbrev til højre.
 ========================================== */
 
 footer {
   background-color: var(--footer-color);
+  border-top: 1px solid #333;
+  padding: 48px 24px;
   text-align: center;
-  margin-top: 3rem;
-  margin-inline: 0;
-  padding-block: 5rem;
-}
-footer img {
-  height: 150px;
-  margin: 1rem;
-}
-/* Første linje: grøn */
-h2.nyhedsbrev-titel {
-  color: #374735;
 }
 
-/* Anden linje: hvid og på en ny linje */
-h2.nyhedsbrev-titel span {
-  display: block;
-  color: var(--bagground-color);
-  font-weight: bold;
+/* Venstre del: logo, "Find us here" og ikoner */
+.footer-venstre {
+  display: flex;
+  flex-direction: column; /* under hinanden */
+  align-items: center; /* centreret */
+  gap: 12px;
+}
+
+.footer-logo {
+  width: 160px;
+}
+
+.footer-find {
+  font-family: "Anton SC", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* Ikonerne ligger ved siden af hinanden */
+.footer-ikoner {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Hvert ikon er en rund, blå knap */
+.footer-ikoner a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%; /* 50% = cirkel */
+  background-color: var(--knap-blaa);
+}
+
+.footer-ikoner a:hover {
+  background-color: var(--knap-blaa-hover);
+}
+
+/* Selve tegningen inde i cirklen (hvid, se img/iconer/*.svg) */
+.footer-ikoner img {
+  width: 22px;
+  height: 22px;
+}
+
+/* Højre del: nyhedsbrevet */
+.footer-hoejre {
+  max-width: 360px;
+  margin: 40px auto 0;
+}
+
+.footer-hoejre h2 {
+  font-family: "Anton SC", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  color: #7a6a4f;
+  margin: 0 0 16px;
+}
+
+/* Feltet og knappen fylder hele bredden af nyhedsbrevet */
+.footer-hoejre .footer-button1,
+.footer-hoejre .footer-button2 {
+  width: 100%;
+}
+
+/* --- Computer: logo til venstre, nyhedsbrev til højre --- */
+@media (min-width: 800px) {
+  footer {
+    display: flex;
+    justify-content: space-between; /* skub de to dele ud til hver side */
+    align-items: center;
+    padding: 64px max(48px, calc((100% - 1100px) / 2)); /* indholdet bliver max 1100px bredt */
+  }
+
+  .footer-hoejre {
+    margin: 0;
+    text-align: left;
+  }
+
+  .footer-hoejre .footer-button1 {
+    text-align: left;
+  }
 }

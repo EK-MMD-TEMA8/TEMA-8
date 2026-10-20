@@ -4,19 +4,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe List</title>
+    <title>Find your recipe</title>
+    <script src="javascript/listview.js" defer></script>
+    <link rel="stylesheet" href="css/generel.css">
+    <link rel="stylesheet" href="css/listview.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Arbutus+Slab&family=Figtree:wght@300..900&display=swap"
+        rel="stylesheet" />
+
+    <script src="javascript/header.js" defer></script>
+    <script src="javascript/burger.js" defer></script>
+
 </head>
 
 <body>
     <header>
-        <h1>Recipe List</h1>
+        <nav>
+            <ul class="menu">
+                <li>
+                    <details>
+                        <summary>Meals</summary>
+                        <ul class="undermenu" id="mealMenu">
+                        </ul>
+                    </details>
+                </li>
+                <li><a href="listview.html">Recipes</a></li>
+                <li><a href="omos.html">About us</a></li>
+            </ul>
+
+            <a href="/">
+                <img src="img/logo/logo.svg" alt="Blue Yum logo" />
+            </a>
+
+            <!-- Search field -->
+            <!-- action + name = søgningen sendes til listview.html?search=... -->
+            <form class="search" role="search" action="listview.html">
+                <img src="img/iconer/search-icon (1).svg" alt="Search icon" class="search-ikon" />
+                <input type="search" name="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
+            </form>
+
+            <button class="burger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </nav>
     </header>
-
     <main>
-    </main>
+        <section class="filter-section">
+            <h1>Find your next recipe</h1>
+            <!-- <div>
+                <button> <a href="index.html">Back</a></button>
+            </div>
+            <h1>
+                Find your next recipe
+            </h1> -->
+            <div class="filter-group">
+                <h3>MEALS</h3>
+                <!-- <h3>
+                    Meals
+                </h3> -->
+                <div class="filter-buttons">
+                    <button class="btn-tag" data-filter="mealType" data-value="All">ALL</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Breakfast">BREAKFAST</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Lunch">LUNCH</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Dinner">DINNER</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Dessert">DESSERT</button>
+                    <button class="btn-tag" data-filter="mealType" data-value="Snack">SNACKS</button>
+                    <!-- <button class="active">ALL</button>
+                    <button>BREAKFAST</button>
+                    <button>LUNCH</button>
+                    <button>DINNER</button>
+                    <button>DESSERT</button>
+                    <button>SNACKS</button> -->
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>TIME</h3>
+                <!-- <h3>
+                    Cooking time
+                </h3> -->
+                <div class="filter-buttons">
+                    <button class="btn-tag" data-filter="time" data-value="All">ALL</button>
+                    <button class="btn-tag" data-filter="time" data-value="Under">Under 30 min</button>
+                    <button class="btn-tag" data-filter="time" data-value="Over">Over 30 min</button>
+                    <!-- <button>ALL</button>
+                    <button>Under 30 min</button>
+                    <button>Over 30 min</button> -->
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>CUISINE</h3>
+                <!-- <h3>
+                    Cuisine
+                </h3> -->
+                <!-- Køkkenerne bliver lavet i listview.js ud fra API'et -->
+                <div class="filter-buttons" id="cuisineButtons">
+                    <button class="btn-tag" data-filter="cuisine" data-value="All">ALL</button>
+                    <!-- <button>ALL</button>
+                    <button>FRANCE</button>
+                    <button>MEXICAN</button>
+                    <button>ITALIAN</button>
+                    <button>ASIA</button> -->
+                </div>
+                <!-- Viser/skjuler resten af køkkenerne -->
+                <button class="btn-opdag cuisine-more-btn" id="cuisineMore">See more</button>
+            </div>
+            <button class="btn-opdag back-btn" id="backButton" hidden>← Back</button>
+            <!-- <section>
 
+            </section>
+            <section>
+
+            </section> -->
+        </section>
+        <div class="separator"></div>
+        <section class="intro-section">
+            <h2 id="listTitle">ALL RECIPES</h2>
+            <!-- <h2>ALL RECIPES</h2> -->
+            <a> OUR NEWEST RECIPES:</a>
+            <!-- <h1>
+                Recipes
+            </h1>
+            <h3>
+                The newest recipes
+            </h3> -->
+        </section>
+        <section id="recipeContainer" class="recipe-grid">
+            <!-- <section>
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </section>
+            <section>
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </section>
+            <section>
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </section> -->
+        </section>
+        <!-- Vises kun, når en søgning ikke giver nogen opskrifter -->
+        <section class="empty-state" id="emptyState" hidden>
+            <img src="img/iconer/tom-gryde.svg" alt="" class="tegning">
+            <h2>No recipes for "<span id="emptyWord"></span>"</h2>
+            <p>We don't have that one yet – but you can ask us to make it.</p>
+            <a class="btn-opdag request-btn" id="requestLink" href="request.html">Request it →</a>
+        </section>
+        <div class="button-wrapper">
+            <button class="btn-opdag more-btn">See more</button>
+            <!-- <button class="more-btn">See more</button> -->
+            <!-- <p>See more</p> -->
+        </div>
+        <section class="kitchen-section">
+            <h2>Do you dare to try a new cuisine?</h2>
+            <!-- <h2>Do you dare to try a new cuisine?</h2> -->
+            <div id="kitchenContainer" class="kitchen-grid">
+                <!-- <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">Asian</a></button>
+                    </div>
+                </div>
+                <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">France</a></button>
+                    </div>
+                </div>
+                <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">Italy</a></button>
+                    </div>
+                </div>
+                <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">Indian</a></button>
+                    </div>
+                </div>
+                <div>
+                    <img src="" alt="">
+                    <div>
+                        <button> <a href="">Japanese</a></button>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+    </main>
     <footer>
-        <p>&copy; 2024 Recipe List</p>
+        <div class="footer-venstre">
+            <img src="img/logo/logo.svg" alt="Yum logo" class="footer-logo">
+            <p class="footer-find">Find us here</p>
+            <div class="footer-ikoner">
+                <a href="#" aria-label="TikTok"><img src="img/iconer/tiktok.svg" alt=""></a>
+                <a href="#" aria-label="Instagram"><img src="img/iconer/instagram.svg" alt=""></a>
+            </div>
+        </div>
+        <div class="footer-hoejre">
+            <h2>Want to get our newest recipes before everyone else?</h2>
+            <input type="email" class="footer-button1" placeholder="yourname@gmail.com">
+            <button class="footer-button2">Sign up here</button>
+        </div>
     </footer>
 </body>
 

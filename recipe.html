@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recipe</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,35 +13,43 @@
         rel="stylesheet" />
 
     <link rel="stylesheet" href="css/generel.css">
-    <link rel="stylesheet" href="css/generel.css">
+    <link rel="stylesheet" href="css/recipe.css">
+    <script src="javascript/header.js" defer></script>
+    <script src="javascript/burger.js" defer></script>
+    <script src="javascript/recipe.js" defer></script>
+
 </head>
 
 <body>
+
+
     <header>
         <nav>
             <ul class="menu">
                 <li>
                     <details>
-                        <summary>Måltider</summary>
-                        <ul class="undermenu">
-                            <li><a href="/listview?mealType=breakfast">Morgenmad</a></li>
-                            <li><a href="/listview?mealType=lunch">Frokost</a></li>
-                            <li><a href="/listview?mealType=dinner">Aftensmad</a></li>
-                            <li><a href="/listview?mealType=dessert">Dessert</a></li>
+                        <summary>Meals</summary>
+
+                        <ul class="undermenu" id="mealMenu">
+
                         </ul>
                     </details>
                 </li>
-                <li><a href="/listview">Opskrifter</a></li>
-                <li><a href="/omos">Om os</a></li>
+                <li><a href="listview.html">Recipes</a></li>
+                <li><a href="omos.html">About us</a></li>
+
             </ul>
 
             <a href="/">
-                <img src="/img/logo/roed-logo.png" alt="Yum, gå til forsiden" />
+                <img src="img/logo/logo.svg" alt="Blue Yum logo" />
+
             </a>
 
-            <!-- Søgefelt -->
-            <form class="search" role="search">
-                <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" />
+
+            <form class="search" role="search" action="listview.html">
+                <img src="img/iconer/search-icon (1).svg" alt="Search icon" class="search-ikon" />
+                <input type="search" name="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
+
             </form>
 
             <button class="burger">
@@ -52,15 +60,76 @@
         </nav>
     </header>
 
-    <main>
+    <main class="recipe">
+        <section class="recipe-hero">
+            <div class="recipe-intro">
+                <div class="recipe-text">
+                    <h1 id="recipeTitle">Loading recipe…</h1>
+                    <dl class="recipe-facts" id="recipeFacts"></dl>
+                </div>
+                <img class="recipe-doodle" src="img/iconer/opskrifttegning.svg" alt="">
+            </div>
+            <img class="recipe-image" id="recipeImage" alt="">
+        </section>
 
+        <section class="recipe-body" id="recipeBody">
+            <div class="ingredients-panel">
+                <button class="discount-badge" id="discountButton" aria-haspopup="dialog">Get a discount next time you
+                    shop</button>
+                <div class="ingredients-card">
+                    <h2>Ingredients</h2>
+                    <ul class="ingredient-list" id="ingredientList"></ul>
+                </div>
+            </div>
 
+            <div class="method">
+                <h2>How to</h2>
+                <ol class="instruction-list" id="instructionList"></ol>
+            </div>
+        </section>
 
+        <section class="recipe-back">
+            <p>Changed your mind? That's okay.<br>We still have plenty of other dishes.</p>
+            <a href="listview.html" class="btn-back">Back</a>
+        </section>
     </main>
+    <dialog class="discount-dialog" id="discountDialog" aria-labelledby="discountTitle">
+        <div class="dialog-inner">
+            <button class="dialog-close" id="dialogClose" aria-label="Close">×</button>
 
+            <div class="dialog-content" id="discountForm">
+                <h2 id="discountTitle">Get 15% off your next shop</h2>
+                <p>Sign up to our newsletter and we'll send your discount code straight to your inbox.</p>
+                <form class="dialog-form" id="signupForm">
+                    <input type="email" id="signupEmail" placeholder="yourname@gmail.com" aria-label="Email" required>
+                    <button type="submit">Sign me up</button>
+                </form>
+            </div>
+
+            <div class="dialog-content" id="discountThanks" hidden>
+                <h2>You're in!</h2>
+                <p>Check your inbox for your discount code.</p>
+            </div>
+        </div>
+    </dialog>
     <footer>
-        <p>&copy; 2025 Recipe</p>
+        <div class="footer-venstre">
+            <img src="img/logo/logo.svg" alt="Yum logo" class="footer-logo">
+            <p class="footer-find">Find us here</p>
+            <div class="footer-ikoner">
+                <a href="#" aria-label="TikTok"><img src="img/iconer/tiktok.svg" alt=""></a>
+                <a href="#" aria-label="Instagram"><img src="img/iconer/instagram.svg" alt=""></a>
+            </div>
+        </div>
+
+        <div class="footer-hoejre">
+            <h2>Want to get our newest recipes before everyone else?</h2>
+            <input type="email" class="footer-button1" placeholder="yourname@gmail.com">
+            <button class="footer-button2">Sign up here</button>
+        </div>
     </footer>
+
 </body>
+
 
 </html>

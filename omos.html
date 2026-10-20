@@ -4,9 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>about us</title>
     <link rel="stylesheet" href="css/generel.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Arbutus+Slab&family=Figtree:wght@300..900&display=swap"
+        rel="stylesheet" />
+    <script src="javascript/header.js" defer></script>
+    <script src="javascript/burger.js" defer></script>
+
 </head>
 
 <body>
@@ -15,26 +23,28 @@
             <ul class="menu">
                 <li>
                     <details>
-                        <summary>Måltider</summary>
-                        <ul class="undermenu">
-                            <li><a href="/listview?mealType=breakfast">Morgenmad</a></li>
-                            <li><a href="/listview?mealType=lunch">Frokost</a></li>
-                            <li><a href="/listview?mealType=dinner">Aftensmad</a></li>
-                            <li><a href="/listview?mealType=dessert">Dessert</a></li>
+                        <summary>Meals</summary>
+
+                        <ul class="undermenu" id="mealMenu">
+
                         </ul>
                     </details>
                 </li>
-                <li><a href="/listview">Opskrifter</a></li>
-                <li><a href="/omos">Om os</a></li>
+                <li><a href="listview.html">Recipes</a></li>
+                <li><a href="omos.html">About us</a></li>
+
             </ul>
 
             <a href="/">
-                <img src="/img/logo/roed-logo.png" alt="Yum, gå til forsiden" />
+                <img src="img/logo/logo.svg" alt="Blue Yum logo" />
+
             </a>
 
-            <!-- Søgefelt -->
-            <form class="search" role="search">
-                <input type="search" placeholder="Søg efter opskrift" aria-label="Søg efter opskrift" />
+
+            <form class="search" role="search" action="listview.html">
+                <img src="img/iconer/search-icon (1).svg" alt="Search icon" class="search-ikon" />
+                <input type="search" name="search" placeholder="Search for a recipe" aria-label="Search for a recipe" />
+
             </form>
 
             <button class="burger">
@@ -44,29 +54,30 @@
             </button>
         </nav>
     </header>
+
     <main>
 
 
         <section class="om-os">
-            <p>Denne side er under udvikling. Kom snart tilbage.</p>
-            <button> <a href="/">Tilbage til forsiden</a></button>
+            <img src="img/iconer/kokkehue.svg" alt="" class="tegning">
+            <p>This page is under construction. Come back soon.</p>
+            <a href="/" class="btn-opdag">Back to the front page</a>
         </section>
     </main>
     <footer>
-        <img src="img/logo/hvid.logo.png" alt="hvidt yum Logo" />
+        <div class="footer-venstre">
+            <img src="img/logo/logo.svg" alt="Yum logo" class="footer-logo">
+            <p class="footer-find">Find us here</p>
+            <div class="footer-ikoner">
+                <a href="#" aria-label="TikTok"><img src="img/iconer/tiktok.svg" alt=""></a>
+                <a href="#" aria-label="Instagram"><img src="img/iconer/instagram.svg" alt=""></a>
+            </div>
+        </div>
 
-        <h2 class="nyhedsbrev-titel">
-            Vil du modtage vores nyeste opskrifter
-            <span>før alle andre?</span>
-        </h2>
-        <p>Tilmeld dig vores nyhedsbrev</p>
-        <div>
-            <button class="footer-button1">
-                <p>Navn@gmail.com</p>
-            </button>
-            <button class="footer-button2">
-                <p>Tilmeld dig nu</p>
-            </button>
+        <div class="footer-hoejre">
+            <h2>Want to get our newest recipes before everyone else?</h2>
+            <input type="email" class="footer-button1" placeholder="yourname@gmail.com">
+            <button class="footer-button2">Sign up here</button>
         </div>
     </footer>
 

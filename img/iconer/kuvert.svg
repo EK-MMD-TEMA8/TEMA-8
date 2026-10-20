@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 260" fill="none" stroke="#2b3ec4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Kuvert med hjerte, der flyver af sted: "dit ønske er sendt" -->
+
+  <!-- Fartstreger bag kuverten -->
+  <path d="M14 104 L60 104" />
+  <path d="M26 136 L66 136" />
+  <path d="M14 168 L58 168" />
+
+  <!-- Kuverten -->
+  <path d="M86 66 C160 60 236 60 314 66 C320 120 320 176 314 226 C236 232 160 232 86 226 C80 176 80 120 86 66 Z" fill="#ffffff" />
+  <!-- Klappen -->
+  <path d="M88 70 C130 110 166 140 200 146 C234 140 272 110 312 70" />
+  <!-- Bundens to skrå linjer -->
+  <path d="M90 222 C120 196 146 176 168 162" />
+  <path d="M310 222 C280 196 254 176 232 162" />
+
+  <!-- Hjerte-segl -->
+  <path d="M200 182 C178 166 172 150 184 142 C192 136 200 142 200 150 C200 142 208 136 216 142 C228 150 222 166 200 182 Z" fill="#ffffff" />
+</svg>

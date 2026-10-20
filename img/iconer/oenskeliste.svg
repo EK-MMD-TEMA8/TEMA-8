@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 320" fill="none" stroke="#2b3ec4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Ønskeliste med blyant: "ønsk en opskrift" -->
+
+  <!-- Papir bagved -->
+  <path d="M86 38 C150 32 210 30 262 36 C268 120 270 210 266 292 C200 298 140 298 92 294" fill="#ffffff" />
+
+  <!-- Papiret forrest -->
+  <path d="M58 52 C124 46 180 44 236 50 C242 130 244 214 240 292 C176 298 116 298 64 294 C56 214 54 130 58 52 Z" fill="#ffffff" />
+
+  <!-- Ringene øverst -->
+  <path d="M96 36 C96 26 112 26 112 36 L112 60" />
+  <path d="M142 34 C142 24 158 24 158 34 L158 58" />
+  <path d="M188 34 C188 24 204 24 204 34 L204 58" />
+
+  <!-- Tre linjer med afkrydsningsfelter -->
+  <path d="M84 104 L104 104 L104 124 L84 124 Z" />
+  <path d="M88 114 L94 120 L104 100" />
+  <path d="M120 116 C150 114 180 114 210 116" />
+
+  <path d="M84 156 L104 156 L104 176 L84 176 Z" />
+  <path d="M120 168 C150 166 180 166 210 168" />
+
+  <path d="M84 208 L104 208 L104 228 L84 228 Z" />
+  <path d="M120 220 C140 218 160 218 180 220" />
+
+  <!-- Blyant på skrå -->
+  <path d="M232 250 L300 150 L320 164 L252 264 Z" fill="#ffffff" />
+  <path d="M232 250 L226 282 L252 264" fill="#ffffff" />
+  <path d="M290 164 L310 178" />
+</svg>
